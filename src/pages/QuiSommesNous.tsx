@@ -16,7 +16,7 @@ const QuiSommesNous = () => {
                 Qui sommes-nous ?
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Hieraflow est développé par <span className="text-primary font-semibold">HEAVEN IT</span>, 
+                Hieraflow est développé par <a href="https://heavenit.org" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 underline transition-colors">HEAVEN IT</a>, 
                 acteur engagé dans l'accessibilité, l'éthique et la sustainability numérique.
               </p>
             </div>
