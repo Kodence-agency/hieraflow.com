@@ -30,12 +30,19 @@ const HeroSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
+              <Button variant="hero" size="lg" className="group" onClick={() => document.getElementById('decouvrir')?.scrollIntoView({ behavior: 'smooth' })}>
                 Découvrir Hieraflow
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10">
-                Voir la démo
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white/30 text-primary-foreground hover:bg-white/10"
+                asChild
+              >
+                <a href="https://app.hieraflow.com" target="_blank" rel="noopener noreferrer">
+                  Voir la démo
+                </a>
               </Button>
             </div>
             
