@@ -37,10 +37,10 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="border-white/30 text-primary-foreground hover:bg-white/10"
+                className="border-white/30 hover:bg-white/10"
                 asChild
               >
-                <a href="https://app.hieraflow.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://app.hieraflow.com" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent font-semibold">
                   Voir la démo
                 </a>
               </Button>
