@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { 
   Network, 
   Users, 
@@ -8,40 +9,136 @@ import {
   Cloud, 
   Building2, 
   ArrowRight,
-  CheckCircle
+  CheckCircle,
+  ChevronDown,
+  Search,
+  Eye,
+  Lock,
+  Settings,
+  Server,
+  Globe
 } from "lucide-react";
+import { useState } from "react";
 
 const DiscoverSection = () => {
+  const [openItems, setOpenItems] = useState<number[]>([]);
+
+  const toggleItem = (index: number) => {
+    setOpenItems(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
   const features = [
     {
       icon: Network,
       title: "Organigramme Interactif",
-      description: "Vue hiérarchique complète de vos collaborateurs organisée par services et départements."
+      description: "Vue hiérarchique complète de vos collaborateurs organisée par services et départements.",
+      details: {
+        subtitle: "Visualisation hiérarchique intelligente",
+        content: [
+          "Navigation intuitive dans l'arbre organisationnel",
+          "Zoom et filtrage par service, département ou fonction",
+          "Vue d'ensemble ou détaillée selon les besoins",
+          "Mise à jour automatique des relations hiérarchiques"
+        ],
+        highlights: [
+          { icon: Search, text: "Recherche instantanée par nom ou fonction" },
+          { icon: Eye, text: "Vue interactive avec zoom et navigation fluide" }
+        ]
+      }
     },
     {
       icon: Users,
       title: "Trombinoscope Dynamique",
-      description: "Identification facilitée des agents par fonction, service et nom avec photos professionnelles."
+      description: "Identification facilitée des agents par fonction, service et nom avec photos professionnelles.",
+      details: {
+        subtitle: "Répertoire visuel complet",
+        content: [
+          "Photos professionnelles haute résolution",
+          "Informations de contact intégrées",
+          "Filtrage avancé par critères multiples",
+          "Mise à jour simple des profils collaborateurs"
+        ],
+        highlights: [
+          { icon: Users, text: "Base de données centralisée des collaborateurs" },
+          { icon: Search, text: "Recherche multicritères avancée" }
+        ]
+      }
     },
     {
       icon: Palette,
       title: "Interface Personnalisable",
-      description: "Design adapté à votre charte graphique et compatible avec vos CMS existants."
+      description: "Design adapté à votre charte graphique et compatible avec vos CMS existants.",
+      details: {
+        subtitle: "Adaptation parfaite à votre identité",
+        content: [
+          "Personnalisation complète des couleurs et logos",
+          "Templates adaptés à différents secteurs",
+          "Intégration WordPress et autres CMS",
+          "Interface responsive sur tous les appareils"
+        ],
+        highlights: [
+          { icon: Palette, text: "Thèmes personnalisés selon votre charte" },
+          { icon: Globe, text: "Compatible avec tous les CMS populaires" }
+        ]
+      }
     },
     {
       icon: Shield,
       title: "Gestion Sécurisée des Rôles",
-      description: "Contrôle précis des accès et permissions selon les niveaux d'autorisation."
+      description: "Contrôle précis des accès et permissions selon les niveaux d'autorisation.",
+      details: {
+        subtitle: "Sécurité et contrôle d'accès avancés",
+        content: [
+          "Définition fine des rôles et permissions",
+          "Authentification sécurisée multi-facteurs",
+          "Audit trail complet des modifications",
+          "Conformité RGPD intégrée"
+        ],
+        highlights: [
+          { icon: Lock, text: "Chiffrement des données sensibles" },
+          { icon: Shield, text: "Authentification sécurisée SSO disponible" }
+        ]
+      }
     },
     {
       icon: Building2,
       title: "Gestion Complète des Entités",
-      description: "Administration centralisée des collaborateurs, départements et sites."
+      description: "Administration centralisée des collaborateurs, départements et sites.",
+      details: {
+        subtitle: "Administration centralisée",
+        content: [
+          "Gestion multi-sites et multi-départements",
+          "Import/export de données en masse",
+          "Historique des modifications",
+          "Workflows d'approbation personnalisables"
+        ],
+        highlights: [
+          { icon: Building2, text: "Structure organisationnelle flexible" },
+          { icon: Settings, text: "Workflows personnalisables" }
+        ]
+      }
     },
     {
       icon: Cloud,
       title: "Déploiement Flexible",
-      description: "Solution 100% cloud ou on-premise selon vos exigences de sécurité."
+      description: "Solution 100% cloud ou on-premise selon vos exigences de sécurité.",
+      details: {
+        subtitle: "Infrastructure adaptée à vos besoins",
+        content: [
+          "Déploiement cloud sécurisé ou sur vos serveurs",
+          "Sauvegarde automatique et redondance",
+          "Monitoring 24/7 et support technique",
+          "Évolutivité selon votre croissance"
+        ],
+        highlights: [
+          { icon: Cloud, text: "Hébergement sécurisé en Europe" },
+          { icon: Server, text: "Option on-premise disponible" }
+        ]
+      }
     }
   ];
 
@@ -77,19 +174,54 @@ const DiscoverSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, index) => (
-            <Card key={index} className="group hover:shadow-elegant transition-all duration-300 border-border/50">
-              <CardContent className="p-6">
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <feature.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {feature.description}
-                </p>
-              </CardContent>
-            </Card>
+            <Collapsible key={index} open={openItems.includes(index)} onOpenChange={() => toggleItem(index)}>
+              <Card className="group hover:shadow-elegant transition-all duration-300 border-border/50 overflow-hidden">
+                <CardContent className="p-0">
+                  <CollapsibleTrigger asChild>
+                    <div className="p-6 cursor-pointer hover:bg-muted/30 transition-colors">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <feature.icon className="w-6 h-6 text-primary-foreground" />
+                        </div>
+                        <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${openItems.includes(index) ? 'rotate-180' : ''}`} />
+                      </div>
+                      <h3 className="text-xl font-semibold text-foreground mb-3">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </CollapsibleTrigger>
+                  
+                  <CollapsibleContent className="border-t border-border/30">
+                    <div className="p-6 bg-muted/20">
+                      <h4 className="text-lg font-semibold text-foreground mb-4">
+                        {feature.details.subtitle}
+                      </h4>
+                      
+                      <ul className="space-y-2 mb-6">
+                        {feature.details.content.map((item, idx) => (
+                          <li key={idx} className="flex items-start space-x-2">
+                            <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-sm text-muted-foreground">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="space-y-3">
+                        {feature.details.highlights.map((highlight, idx) => (
+                          <div key={idx} className="flex items-center space-x-3 p-3 bg-card rounded-lg border border-border/30">
+                            <highlight.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                            <span className="text-sm font-medium text-foreground">{highlight.text}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </CollapsibleContent>
+                </CardContent>
+              </Card>
+            </Collapsible>
           ))}
         </div>
 
