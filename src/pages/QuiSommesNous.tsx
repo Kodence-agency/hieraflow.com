@@ -1,10 +1,31 @@
-import { Building2, Users, Target, Lightbulb, Award, Heart, Shield, TrendingUp, Clock, CheckCircle, Leaf, Accessibility, HandHeart } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Building2,
+  Users,
+  Target,
+  Lightbulb,
+  Award,
+  Heart,
+  Shield,
+  TrendingUp,
+  Clock,
+  CheckCircle,
+  Leaf,
+  Accessibility,
+  HandHeart,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import aboutTeamCollaboration from "@/assets/about-team-collaboration.jpg";
 import accessibilityEthics from "@/assets/accessibility-ethics.jpg";
 import securityCompliance from "@/assets/security-compliance.jpg";
+import { Link } from "react-router-dom";
 
 const QuiSommesNous = () => {
   return (
@@ -12,15 +33,30 @@ const QuiSommesNous = () => {
       <Header />
       <main className="pt-20" role="main">
         {/* Hero Section */}
-        <section className="bg-gradient-subtle py-20" aria-labelledby="hero-title">
+        <section
+          className="bg-gradient-subtle py-20"
+          aria-labelledby="hero-title"
+        >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h1 id="hero-title" className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              <h1
+                id="hero-title"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+              >
                 Qui sommes-nous ?
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Hieraflow est développé par <a href="https://heavenit.org" target="_blank" rel="noopener noreferrer" className="text-primary font-semibold hover:text-primary/80 underline transition-colors">HEAVEN IT</a>, 
-                acteur engagé dans l'accessibilité, l'éthique et la sustainability numérique.
+                Hieraflow est développé par{" "}
+                <a
+                  href="https://heavenit.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary font-semibold hover:text-primary/80 underline transition-colors"
+                >
+                  HEAVEN IT
+                </a>
+                , acteur engagé dans l'accessibilité, l'éthique et la
+                sustainability numérique.
               </p>
             </div>
           </div>
@@ -31,22 +67,27 @@ const QuiSommesNous = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 id="about-title" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2
+                  id="about-title"
+                  className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+                >
                   À propos de HEAVEN IT
                 </h2>
                 <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-                  HEAVEN IT est spécialisée dans l'accompagnement des organisations, collectivités et administrations 
-                  dans leur transformation digitale. Son expertise se concentre sur la gestion applicative et les 
-                  services aux utilisateurs, avec pour objectif de développer des solutions agiles et performantes, 
-                  adaptées aux besoins métiers.
+                  HEAVEN IT est spécialisée dans l'accompagnement des
+                  organisations, collectivités et administrations dans leur
+                  transformation digitale. Son expertise se concentre sur la
+                  gestion applicative et les services aux utilisateurs, avec
+                  pour objectif de développer des solutions agiles et
+                  performantes, adaptées aux besoins métiers.
                 </p>
               </div>
 
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                  <img 
-                    src={aboutTeamCollaboration} 
-                    alt="Équipe professionnelle collaborative travaillant ensemble sur la transformation digitale dans un environnement de travail moderne" 
+                  <img
+                    src={aboutTeamCollaboration}
+                    alt="Équipe professionnelle collaborative travaillant ensemble sur la transformation digitale dans un environnement de travail moderne"
                     className="w-full h-96 object-cover rounded-lg shadow-card"
                     loading="lazy"
                   />
@@ -56,42 +97,64 @@ const QuiSommesNous = () => {
                     Notre Mission
                   </h3>
                   <p className="text-muted-foreground text-lg leading-relaxed">
-                    En plaçant l'humain et l'expérience utilisateur au centre, Heaven IT contribue à améliorer 
-                    la qualité des environnements de travail numériques et à créer les conditions d'innovation 
-                    pour ses clients. Grâce à son approche basée sur la proximité, l'écoute et l'excellence 
-                    opérationnelle, Heaven IT se positionne comme un partenaire de confiance pour accélérer 
-                    et réussir les projets de transformation digitale.
+                    En plaçant l'humain et l'expérience utilisateur au centre,
+                    Heaven IT contribue à améliorer la qualité des
+                    environnements de travail numériques et à créer les
+                    conditions d'innovation pour ses clients. Grâce à son
+                    approche basée sur la proximité, l'écoute et l'excellence
+                    opérationnelle, Heaven IT se positionne comme un partenaire
+                    de confiance pour accélérer et réussir les projets de
+                    transformation digitale.
                   </p>
                 </div>
               </div>
 
               {/* Core Values */}
-              <div className="grid md:grid-cols-3 gap-8 mb-20" role="list" aria-label="Nos valeurs fondamentales">
+              <div
+                className="grid md:grid-cols-3 gap-8 mb-20"
+                role="list"
+                aria-label="Nos valeurs fondamentales"
+              >
                 <div className="text-center" role="listitem">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                  <div
+                    className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                    aria-hidden="true"
+                  >
                     <Accessibility className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">Accessibilité</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    Accessibilité
+                  </h3>
                   <p className="text-muted-foreground">
                     Solutions numériques inclusives et accessibles à tous
                   </p>
                 </div>
 
                 <div className="text-center" role="listitem">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                  <div
+                    className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                    aria-hidden="true"
+                  >
                     <HandHeart className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">Éthique</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    Éthique
+                  </h3>
                   <p className="text-muted-foreground">
                     Approche responsable et transparente dans tous nos projets
                   </p>
                 </div>
 
                 <div className="text-center" role="listitem">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                  <div
+                    className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                    aria-hidden="true"
+                  >
                     <Leaf className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">Sustainability</h3>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    Sustainability
+                  </h3>
                   <p className="text-muted-foreground">
                     Développement durable et solutions éco-responsables
                   </p>
@@ -106,17 +169,20 @@ const QuiSommesNous = () => {
                       Notre Philosophie
                     </h3>
                     <p className="text-muted-foreground text-lg leading-relaxed">
-                      En plaçant l'humain et l'expérience utilisateur au centre, Heaven IT contribue à améliorer 
-                      la qualité des environnements de travail numériques et à créer les conditions d'innovation 
-                      pour ses clients. Grâce à son approche basée sur la proximité, l'écoute et l'excellence 
-                      opérationnelle, Heaven IT se positionne comme un partenaire de confiance pour accélérer 
-                      et réussir les projets de transformation digitale.
+                      En plaçant l'humain et l'expérience utilisateur au centre,
+                      Heaven IT contribue à améliorer la qualité des
+                      environnements de travail numériques et à créer les
+                      conditions d'innovation pour ses clients. Grâce à son
+                      approche basée sur la proximité, l'écoute et l'excellence
+                      opérationnelle, Heaven IT se positionne comme un
+                      partenaire de confiance pour accélérer et réussir les
+                      projets de transformation digitale.
                     </p>
                   </div>
                   <div>
-                    <img 
-                      src={accessibilityEthics} 
-                      alt="Illustration conceptuelle de l'accessibilité numérique et de l'éthique technologique avec des symboles d'inclusion" 
+                    <img
+                      src={accessibilityEthics}
+                      alt="Illustration conceptuelle de l'accessibilité numérique et de l'éthique technologique avec des symboles d'inclusion"
                       className="w-full h-64 object-cover rounded-lg shadow-card"
                       loading="lazy"
                     />
@@ -128,20 +194,26 @@ const QuiSommesNous = () => {
         </section>
 
         {/* Why Trust Us */}
-        <section className="py-20 bg-gradient-subtle" aria-labelledby="trust-title">
+        <section
+          className="py-20 bg-gradient-subtle"
+          aria-labelledby="trust-title"
+        >
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 id="trust-title" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2
+                  id="trust-title"
+                  className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+                >
                   Pourquoi nous faire confiance ?
                 </h2>
               </div>
 
               <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
                 <div>
-                  <img 
-                    src={securityCompliance} 
-                    alt="Représentation visuelle de la sécurité des données et de la conformité RGPD avec des éléments de protection numérique" 
+                  <img
+                    src={securityCompliance}
+                    alt="Représentation visuelle de la sécurité des données et de la conformité RGPD avec des éléments de protection numérique"
                     className="w-full h-64 object-cover rounded-lg shadow-card"
                     loading="lazy"
                   />
@@ -150,16 +222,23 @@ const QuiSommesNous = () => {
                   <Card className="border-primary/20">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
-                        <Shield className="w-6 h-6 text-primary" aria-hidden="true" />
+                        <Shield
+                          className="w-6 h-6 text-primary"
+                          aria-hidden="true"
+                        />
                         Sécurité & Conformité
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
-                        Hiéraflow garantit la fiabilité des données et assure la confidentialité maximale, 
-                        conformément aux exigences du RGPD.
+                        Hiéraflow garantit la fiabilité des données et assure la
+                        confidentialité maximale, conformément aux exigences du
+                        RGPD.
                       </p>
-                      <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                      <ul
+                        className="space-y-2 text-sm text-muted-foreground"
+                        role="list"
+                      >
                         <li role="listitem">• Hébergement sécurisé</li>
                         <li role="listitem">• Chiffrement des données</li>
                         <li role="listitem">• Contrôles d'accès stricts</li>
@@ -171,16 +250,23 @@ const QuiSommesNous = () => {
                   <Card className="border-primary/20">
                     <CardHeader>
                       <CardTitle className="flex items-center gap-3">
-                        <Users className="w-6 h-6 text-primary" aria-hidden="true" />
+                        <Users
+                          className="w-6 h-6 text-primary"
+                          aria-hidden="true"
+                        />
                         Accompagnement personnalisé
                       </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
-                        Notre équipe de spécialistes assure un support réactif et un suivi continu 
-                        pour garantir la meilleure adoption possible.
+                        Notre équipe de spécialistes assure un support réactif
+                        et un suivi continu pour garantir la meilleure adoption
+                        possible.
                       </p>
-                      <ul className="space-y-2 text-sm text-muted-foreground" role="list">
+                      <ul
+                        className="space-y-2 text-sm text-muted-foreground"
+                        role="list"
+                      >
                         <li role="listitem">• Support réactif</li>
                         <li role="listitem">• Formations adaptées</li>
                         <li role="listitem">• Suivi personnalisé</li>
@@ -195,15 +281,19 @@ const QuiSommesNous = () => {
                 <Card className="border-primary/20">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <Target className="w-6 h-6 text-primary" aria-hidden="true" />
+                      <Target
+                        className="w-6 h-6 text-primary"
+                        aria-hidden="true"
+                      />
                       Flexibilité & Évolutivité
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Hiéraflow s'adapte à toutes les tailles et structures d'entreprise, 
-                      avec une interface intuitive qui simplifie la prise en main. 
-                      Les processus automatisés libèrent du temps aux équipes RH.
+                      Hiéraflow s'adapte à toutes les tailles et structures
+                      d'entreprise, avec une interface intuitive qui simplifie
+                      la prise en main. Les processus automatisés libèrent du
+                      temps aux équipes RH.
                     </p>
                   </CardContent>
                 </Card>
@@ -211,15 +301,18 @@ const QuiSommesNous = () => {
                 <Card className="border-primary/20">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3">
-                      <Award className="w-6 h-6 text-primary" aria-hidden="true" />
+                      <Award
+                        className="w-6 h-6 text-primary"
+                        aria-hidden="true"
+                      />
                       Excellence Opérationnelle
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-muted-foreground">
-                      Notre engagement va au-delà de la simple fourniture d'un outil : 
-                      nous créons un véritable partenariat centré sur la confiance, 
-                      la transparence et l'excellence opérationnelle.
+                      Notre engagement va au-delà de la simple fourniture d'un
+                      outil : nous créons un véritable partenariat centré sur la
+                      confiance, la transparence et l'excellence opérationnelle.
                     </p>
                   </CardContent>
                 </Card>
@@ -233,7 +326,10 @@ const QuiSommesNous = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
-                <h2 id="figures-title" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                <h2
+                  id="figures-title"
+                  className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+                >
                   Quelques chiffres clés
                 </h2>
                 <p className="text-lg text-muted-foreground">
@@ -241,55 +337,91 @@ const QuiSommesNous = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8" role="list" aria-label="Statistiques d'impact">
+              <div
+                className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+                role="list"
+                aria-label="Statistiques d'impact"
+              >
                 <Card className="text-center border-primary/20" role="listitem">
                   <CardContent className="pt-6">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                    <div
+                      className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                      aria-hidden="true"
+                    >
                       <Clock className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="text-3xl font-bold text-primary mb-2" aria-label="30 pourcent">30%</div>
+                    <div
+                      className="text-3xl font-bold text-primary mb-2"
+                      aria-label="30 pourcent"
+                    >
+                      30%
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                      Réduction du temps consacré à la gestion RH grâce à la centralisation 
-                      et à l'automatisation
+                      Réduction du temps consacré à la gestion RH grâce à la
+                      centralisation et à l'automatisation
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="text-center border-primary/20" role="listitem">
                   <CardContent className="pt-6">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                    <div
+                      className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                      aria-hidden="true"
+                    >
                       <TrendingUp className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="text-3xl font-bold text-primary mb-2" aria-label="15 à 25 pourcent">15-25%</div>
+                    <div
+                      className="text-3xl font-bold text-primary mb-2"
+                      aria-label="15 à 25 pourcent"
+                    >
+                      15-25%
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                      Amélioration de la productivité des équipes par une meilleure 
-                      visibilité et coordination
+                      Amélioration de la productivité des équipes par une
+                      meilleure visibilité et coordination
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="text-center border-primary/20" role="listitem">
                   <CardContent className="pt-6">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                    <div
+                      className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                      aria-hidden="true"
+                    >
                       <Lightbulb className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="text-3xl font-bold text-primary mb-2" aria-label="50 pourcent">50%</div>
+                    <div
+                      className="text-3xl font-bold text-primary mb-2"
+                      aria-label="50 pourcent"
+                    >
+                      50%
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                      Agilité organisationnelle accrue permettant une réponse aux changements 
-                      plus rapide
+                      Agilité organisationnelle accrue permettant une réponse
+                      aux changements plus rapide
                     </p>
                   </CardContent>
                 </Card>
 
                 <Card className="text-center border-primary/20" role="listitem">
                   <CardContent className="pt-6">
-                    <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                    <div
+                      className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4"
+                      aria-hidden="true"
+                    >
                       <CheckCircle className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    <div className="text-3xl font-bold text-primary mb-2" aria-label="40 pourcent">40%</div>
+                    <div
+                      className="text-3xl font-bold text-primary mb-2"
+                      aria-label="40 pourcent"
+                    >
+                      40%
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                      Diminution des erreurs liées à la gestion manuelle grâce aux outils 
-                      numériques simplifiés
+                      Diminution des erreurs liées à la gestion manuelle grâce
+                      aux outils numériques simplifiés
                     </p>
                   </CardContent>
                 </Card>
@@ -299,24 +431,32 @@ const QuiSommesNous = () => {
         </section>
 
         {/* Contact CTA */}
-        <section className="py-20 bg-gradient-subtle" aria-labelledby="cta-title">
+        <section
+          className="py-20 bg-gradient-subtle"
+          aria-labelledby="cta-title"
+        >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 id="cta-title" className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+              <h2
+                id="cta-title"
+                className="text-3xl md:text-4xl font-bold text-foreground mb-6"
+              >
                 Prêt à transformer votre organisation ?
               </h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Avec HEAVEN IT et Hiéraflow, vous disposez d'un allié technologique et humain fiable, 
-                capable de soutenir durablement vos projets de transformation digitale et de valorisation 
-                du capital humain.
+                Avec HEAVEN IT et Hiéraflow, vous disposez d'un allié
+                technologique et humain fiable, capable de soutenir durablement
+                vos projets de transformation digitale et de valorisation du
+                capital humain.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-6 py-2" aria-label="Contacter notre équipe pour une démonstration">
+                <Link
+                  to="/#contact"
+                  className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-6 py-2"
+                  aria-label="Contacter notre équipe pour une démonstration"
+                >
                   Nous contacter
-                </a>
-                <a href="https://app.hieraflow.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-6 py-2" aria-label="Accéder à l'application Hieraflow pour un essai gratuit">
-                  Essayer Hieraflow
-                </a>
+                </Link>
               </div>
             </div>
           </div>

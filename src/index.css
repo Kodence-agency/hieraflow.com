@@ -40,10 +40,26 @@ All colors MUST be HSL.
     --radius: 0.75rem;
 
     /* Corporate gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(142 76% 46%));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(25 95% 53%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(var(--primary)),
+      hsl(var(--primary-glow))
+    );
+    --gradient-secondary: linear-gradient(
+      135deg,
+      hsl(var(--secondary)),
+      hsl(142 76% 46%)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--secondary)) 100%
+    );
+    --gradient-accent: linear-gradient(
+      135deg,
+      hsl(var(--accent)),
+      hsl(25 95% 53%)
+    );
 
     /* Shadows */
     --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
@@ -55,7 +71,11 @@ All colors MUST be HSL.
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     /* Gradient background for hero sections */
-    --gradient-subtle: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    --gradient-subtle: linear-gradient(
+      135deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted)) 100%
+    );
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -133,6 +153,7 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth;
   }
 
   body {
