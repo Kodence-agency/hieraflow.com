@@ -26,8 +26,8 @@ const DiscoverSection = () => {
   const toggleItem = (index: number) => {
     setOpenItems(prev => 
       prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
+        ? []  // Close the current item
+        : [index]  // Close all others and open only this one
     );
   };
 
