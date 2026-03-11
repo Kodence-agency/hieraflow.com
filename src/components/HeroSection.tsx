@@ -37,17 +37,16 @@ const HeroSection = () => {
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
-                <span className="block">Système nerveux de</span>
+                <span className="block">Structurez votre</span>
                 <span className="block bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">
-                  votre organisation
+                  organisation
                 </span>
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-lg">
-                Hieraflow rend visible et accessible les compétences, les rôles,
-                et comment vos équipes sont reliées, pour que chacun sache en
-                temps réel qui contacter et que les managers atteignent leurs
-                objectifs avec clarté et simplicité.
+                Hieraflow révolutionne la gestion de vos organigrammes avec une
+                solution intuitive pour visualiser et gérer vos équipes
+                efficacement.
               </p>
             </div>
 
