@@ -58,7 +58,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Users,
-      title: "Trombinoscope Dynamique",
+      title: "Trombinoscope dynamique",
       description:
         "Identification facilitée des agents par fonction, service et nom avec photos professionnelles.",
       details: {
