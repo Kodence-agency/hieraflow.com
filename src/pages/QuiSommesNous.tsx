@@ -285,7 +285,7 @@ const QuiSommesNous = () => {
                         className="w-6 h-6 text-primary"
                         aria-hidden="true"
                       />
-                      Flexibilité & Évolutivité
+                      Flexibilité & évolutivité
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
