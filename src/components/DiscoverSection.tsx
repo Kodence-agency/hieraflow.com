@@ -118,7 +118,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Building2,
-      title: "Gestion Complète des Entités",
+      title: "Gestion complète des entités",
       description:
         "Administration centralisée des collaborateurs, départements et sites.",
       details: {
