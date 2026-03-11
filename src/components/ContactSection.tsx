@@ -152,7 +152,7 @@ const ContactSection = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white">
-                Contactez Notre Équipe
+                Contactez notre équipe
               </h3>
               <p className="text-white/80 text-lg">
                 Notre équipe d'experts est là pour répondre à toutes vos

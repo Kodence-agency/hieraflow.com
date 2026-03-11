@@ -53,7 +53,7 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 id="benefits-title" className="text-4xl lg:text-5xl font-bold text-foreground">
-            Pourquoi Choisir
+            Pourquoi choisir
             <span className="block bg-gradient-secondary bg-clip-text text-transparent">
               Hieraflow ?
             </span>
