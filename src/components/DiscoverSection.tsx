@@ -39,7 +39,7 @@ const DiscoverSection = () => {
   const features = [
     {
       icon: Network,
-      title: "Organigramme Interactif",
+      title: "Organigramme interactif",
       description:
         "Vue hiérarchique complète de vos collaborateurs organisée par services et départements.",
       details: {
