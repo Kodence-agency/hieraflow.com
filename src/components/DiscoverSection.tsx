@@ -137,7 +137,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Cloud,
-      title: "Déploiement Flexible",
+      title: "Déploiement flexible",
       description:
         "Solution 100% cloud ou on-premise selon vos exigences de sécurité.",
       details: {
