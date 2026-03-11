@@ -32,7 +32,7 @@ const HeroSection = () => {
               >
                 <Building2 className="w-4 h-4" aria-hidden="true" />
                 <span className="text-sm font-medium">
-                  Solution SaaS & On-Premise
+                  Solution SaaS & on-premise
                 </span>
               </div>
 
