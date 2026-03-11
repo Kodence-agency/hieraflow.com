@@ -39,7 +39,7 @@ const HeroSection = () => {
               <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
                 <span className="block">Structurez votre</span>
                 <span className="block bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">
-                  Organisation
+                  organisation
                 </span>
               </h1>
 
