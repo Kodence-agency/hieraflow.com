@@ -99,7 +99,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Shield,
-      title: "Gestion Sécurisée des Rôles",
+      title: "Gestion sécurisée des rôles",
       description:
         "Contrôle précis des accès et permissions selon les niveaux d'autorisation.",
       details: {
