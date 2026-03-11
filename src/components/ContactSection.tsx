@@ -83,7 +83,7 @@ const ContactSection = () => {
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
             <CardHeader>
               <CardTitle className="text-2xl text-center">
-                Demandez une Démonstration
+                Demandez une démonstration
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
