@@ -39,7 +39,7 @@ const DiscoverSection = () => {
   const features = [
     {
       icon: Network,
-      title: "Organigramme Interactif",
+      title: "Organigramme interactif",
       description:
         "Vue hiérarchique complète de vos collaborateurs organisée par services et départements.",
       details: {
@@ -58,7 +58,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Users,
-      title: "Trombinoscope Dynamique",
+      title: "Trombinoscope dynamique",
       description:
         "Identification facilitée des agents par fonction, service et nom avec photos professionnelles.",
       details: {
@@ -80,7 +80,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Palette,
-      title: "Interface Personnalisable",
+      title: "Interface personnalisable",
       description:
         "Design adapté à votre charte graphique et compatible avec vos CMS existants.",
       details: {
@@ -99,7 +99,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Shield,
-      title: "Gestion Sécurisée des Rôles",
+      title: "Gestion sécurisée des rôles",
       description:
         "Contrôle précis des accès et permissions selon les niveaux d'autorisation.",
       details: {
@@ -118,7 +118,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Building2,
-      title: "Gestion Complète des Entités",
+      title: "Gestion complète des entités",
       description:
         "Administration centralisée des collaborateurs, départements et sites.",
       details: {
@@ -137,7 +137,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Cloud,
-      title: "Déploiement Flexible",
+      title: "Déploiement flexible",
       description:
         "Solution 100% cloud ou on-premise selon vos exigences de sécurité.",
       details: {
