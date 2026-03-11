@@ -221,13 +221,13 @@ const QuiSommesNous = () => {
                 <div className="space-y-8">
                   <Card className="border-primary/20">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <Shield
-                          className="w-6 h-6 text-primary"
-                          aria-hidden="true"
-                        />
-                        Sécurité & Conformité
-                      </CardTitle>
+                    <CardTitle className="flex items-center gap-3">
+                      <Shield
+                        className="w-6 h-6 text-primary"
+                        aria-hidden="true"
+                      />
+                      Sécurité & conformité
+                    </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
