@@ -70,8 +70,8 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white">
-            Prêt à Transformer
-            <span className="block text-accent">Votre Organisation ?</span>
+            Prêt à transformer
+            <span className="block text-accent">votre organisation ?</span>
           </h2>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
             Contactez-nous dès aujourd'hui pour découvrir comment Hieraflow peut
