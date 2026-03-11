@@ -85,7 +85,7 @@ const HeroSection = () => {
               <div className="flex items-center space-x-2" role="listitem">
                 <Users className="w-5 h-5 text-accent" aria-hidden="true" />
                 <span className="text-white/80 text-sm">
-                  PME • Grandes Entreprises
+                  PME • grandes entreprises
                 </span>
               </div>
               <div className="flex items-center space-x-2" role="listitem">

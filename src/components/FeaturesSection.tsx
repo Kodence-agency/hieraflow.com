@@ -69,7 +69,7 @@ const FeaturesSection = () => {
           
           <div className="space-y-6">
             <h3 className="text-3xl font-bold text-foreground">
-              Une Interface Pensée Pour Vous
+              Une interface pensée pour vous
             </h3>
             <p className="text-lg text-muted-foreground">
               Chaque fonctionnalité de Hieraflow a été conçue pour simplifier 
