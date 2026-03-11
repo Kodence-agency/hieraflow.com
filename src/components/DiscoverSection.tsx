@@ -80,7 +80,7 @@ const DiscoverSection = () => {
     },
     {
       icon: Palette,
-      title: "Interface Personnalisable",
+      title: "Interface personnalisable",
       description:
         "Design adapté à votre charte graphique et compatible avec vos CMS existants.",
       details: {
