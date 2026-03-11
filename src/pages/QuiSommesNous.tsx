@@ -166,7 +166,7 @@ const QuiSommesNous = () => {
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
                   <div>
                     <h3 className="text-2xl font-bold text-foreground mb-4">
-                      Notre Philosophie
+                      Notre philosophie
                     </h3>
                     <p className="text-muted-foreground text-lg leading-relaxed">
                       En plaçant l'humain et l'expérience utilisateur au centre,
