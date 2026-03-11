@@ -305,7 +305,7 @@ const QuiSommesNous = () => {
                         className="w-6 h-6 text-primary"
                         aria-hidden="true"
                       />
-                      Excellence Opérationnelle
+                      Excellence opérationnelle
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
