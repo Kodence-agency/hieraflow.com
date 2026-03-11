@@ -70,8 +70,8 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white">
-            Prêt à Transformer
-            <span className="block text-accent">Votre Organisation ?</span>
+            Prêt à transformer
+            <span className="block text-accent">votre organisation ?</span>
           </h2>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
             Contactez-nous dès aujourd'hui pour découvrir comment Hieraflow peut
@@ -83,7 +83,7 @@ const ContactSection = () => {
           <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
             <CardHeader>
               <CardTitle className="text-2xl text-center">
-                Demandez une Démonstration
+                Demandez une démonstration
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -152,7 +152,7 @@ const ContactSection = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <h3 className="text-2xl font-bold text-white">
-                Contactez Notre Équipe
+                Contactez notre équipe
               </h3>
               <p className="text-white/80 text-lg">
                 Notre équipe d'experts est là pour répondre à toutes vos

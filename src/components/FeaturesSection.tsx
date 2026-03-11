@@ -49,7 +49,7 @@ const FeaturesSection = () => {
         <div className="text-center space-y-4 mb-16">
           <h2 id="features-title" className="text-4xl lg:text-5xl font-bold text-foreground">
             Fonctionnalités
-            <span className="block text-primary">Innovantes</span>
+            <span className="block text-primary">innovantes</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Hieraflow combine simplicité et puissance pour offrir une expérience 
@@ -69,7 +69,7 @@ const FeaturesSection = () => {
           
           <div className="space-y-6">
             <h3 className="text-3xl font-bold text-foreground">
-              Une Interface Pensée Pour Vous
+              Une interface pensée pour vous
             </h3>
             <p className="text-lg text-muted-foreground">
               Chaque fonctionnalité de Hieraflow a été conçue pour simplifier 

@@ -94,7 +94,7 @@ const QuiSommesNous = () => {
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-foreground mb-6">
-                    Notre Mission
+                    Notre mission
                   </h3>
                   <p className="text-muted-foreground text-lg leading-relaxed">
                     En plaçant l'humain et l'expérience utilisateur au centre,
@@ -166,7 +166,7 @@ const QuiSommesNous = () => {
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
                   <div>
                     <h3 className="text-2xl font-bold text-foreground mb-4">
-                      Notre Philosophie
+                      Notre philosophie
                     </h3>
                     <p className="text-muted-foreground text-lg leading-relaxed">
                       En plaçant l'humain et l'expérience utilisateur au centre,
@@ -221,13 +221,13 @@ const QuiSommesNous = () => {
                 <div className="space-y-8">
                   <Card className="border-primary/20">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <Shield
-                          className="w-6 h-6 text-primary"
-                          aria-hidden="true"
-                        />
-                        Sécurité & Conformité
-                      </CardTitle>
+                    <CardTitle className="flex items-center gap-3">
+                      <Shield
+                        className="w-6 h-6 text-primary"
+                        aria-hidden="true"
+                      />
+                      Sécurité & conformité
+                    </CardTitle>
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground mb-4">
@@ -285,7 +285,7 @@ const QuiSommesNous = () => {
                         className="w-6 h-6 text-primary"
                         aria-hidden="true"
                       />
-                      Flexibilité & Évolutivité
+                      Flexibilité & évolutivité
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -305,7 +305,7 @@ const QuiSommesNous = () => {
                         className="w-6 h-6 text-primary"
                         aria-hidden="true"
                       />
-                      Excellence Opérationnelle
+                      Excellence opérationnelle
                     </CardTitle>
                   </CardHeader>
                   <CardContent>

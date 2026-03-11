@@ -32,14 +32,14 @@ const HeroSection = () => {
               >
                 <Building2 className="w-4 h-4" aria-hidden="true" />
                 <span className="text-sm font-medium">
-                  Solution SaaS & On-Premise
+                  Solution SaaS & on-premise
                 </span>
               </div>
 
               <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
                 <span className="block">Structurez votre</span>
                 <span className="block bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent">
-                  Organisation
+                  organisation
                 </span>
               </h1>
 
@@ -85,7 +85,7 @@ const HeroSection = () => {
               <div className="flex items-center space-x-2" role="listitem">
                 <Users className="w-5 h-5 text-accent" aria-hidden="true" />
                 <span className="text-white/80 text-sm">
-                  PME • Grandes Entreprises
+                  PME • grandes entreprises
                 </span>
               </div>
               <div className="flex items-center space-x-2" role="listitem">
