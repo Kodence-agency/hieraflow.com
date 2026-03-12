@@ -156,7 +156,7 @@ const HeroSection = () => {
                       <span className="block">{slide.headline}</span>
                       <span
                         className="block bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent"
-                        style={{ textShadow: "none" }}
+                         style={{ filter: "drop-shadow(0 4px 20px rgba(96,165,250,0.7)) drop-shadow(0 2px 10px rgba(74,222,128,0.5))" }}
                       >
                         {slide.highlight}
                       </span>
