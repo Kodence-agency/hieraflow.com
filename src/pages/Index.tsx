@@ -42,7 +42,7 @@ const Index = () => {
                 Accueil
               </a>
               <a
-                href="#fonctionnalites"
+                href="#decouvrir"
                 className="text-foreground hover:text-primary transition-colors"
               >
                 Fonctionnalités
