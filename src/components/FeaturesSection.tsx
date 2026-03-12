@@ -13,6 +13,8 @@ const interfacePoints = [
   { icon: Sparkles, text: "Interface intuitive et responsive", description: "Navigation fluide sur tous les appareils" },
   { icon: Palette, text: "Personnalisation selon votre charte", description: "Couleurs, logos et templates adaptés" },
   { icon: Rocket, text: "Déploiement rapide et sécurisé", description: "Opérationnel en quelques heures" },
+  { icon: Users, text: "Gestion collaborative des équipes", description: "Rôles, permissions et accès centralisés" },
+  { icon: Building2, text: "Multi-sites et multi-entités", description: "Une vue unifiée de toute votre organisation" },
 ];
 
 const audiences = [
