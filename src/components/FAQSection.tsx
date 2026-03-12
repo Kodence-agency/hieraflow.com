@@ -46,7 +46,7 @@ const FAQSection = () => {
         "Est-il à jour en temps réel ou mis à jour après chaque mouvement ? La vraie question n'est pas d'avoir un organigramme, c'est d'avoir une structure fiable, utilisable par vos équipes au quotidien.",
     },
     {
-      question: "\"On a déjà un SIRH.\"",
+      question: "On a déjà un SIRH.",
       answer:
         "Votre SIRH stocke des données RH. Hieraflow rend les données de l'organisation visibles et actionnables par tous. Ce n'est pas le même usage.",
     },
