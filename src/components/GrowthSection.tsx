@@ -93,11 +93,14 @@ const GrowthSection = () => {
             id="growth-title"
             className="text-3xl lg:text-4xl font-bold text-foreground mb-4"
           >
-            Une plateforme qui transforme
+            La réponse à vos
             <span className="block bg-gradient-secondary bg-clip-text text-transparent">
-              la complexité en clarté
+              défis organisationnels
             </span>
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-2">
+            Hieraflow apporte une solution concrète à chacun de ces problèmes, en un seul outil.
+          </p>
 
           <div className="flex flex-wrap justify-center gap-4 mt-10">
             {solutions.map((solution, index) => {
