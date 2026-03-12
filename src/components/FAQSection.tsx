@@ -96,7 +96,7 @@ const FAQSection = () => {
         "Une entreprise de 200 personnes qui perd 10 min/jour par collaborateur perd environ 400 h/mois. Hieraflow coûte une fraction de ce gaspillage. Sans compter les mails envoyés à la mauvaise personne : perte business, image, crédibilité et délais rallongés.",
     },
     {
-      question: "\"Nos données sont sensibles.\"",
+      question: "Nos données sont sensibles.",
       answer:
         "Gestion fine des rôles, bases chiffrées et mécanismes d'authentification en mode SaaS. En mode on-premise, vous gardez la maîtrise totale de vos données.",
     },
