@@ -1,14 +1,39 @@
-import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-organigramme.jpg";
 import { ArrowRight, Users, Building2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import heroCollaboration from "@/assets/hero-collaboration.jpg";
+import heroSharing from "@/assets/hero-sharing.jpg";
+import heroPresentation from "@/assets/hero-presentation.jpg";
+
+const heroImages = [
+  {
+    src: heroCollaboration,
+    alt: "Équipe collaborant sur un projet autour d'une table dans un bureau moderne",
+  },
+  {
+    src: heroSharing,
+    alt: "Personnes heureuses partageant des informations et échangeant des idées",
+  },
+  {
+    src: heroPresentation,
+    alt: "Personne présentant des résultats à un groupe de collègues dans une salle de réunion",
+  },
+];
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       className="relative min-h-screen bg-gradient-hero flex items-center justify-center overflow-hidden"
       role="banner"
     >
-      {/* Skip link for keyboard navigation */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
@@ -44,9 +69,7 @@ const HeroSection = () => {
               </h1>
 
               <p className="text-xl text-white/90 leading-relaxed max-w-lg">
-                Hieraflow révolutionne la gestion de vos organigrammes avec une
-                solution intuitive pour visualiser et gérer vos équipes
-                efficacement.
+                Libérez le potentiel de vos équipes, et fluidifiez leur coopération.
               </p>
             </div>
 
@@ -100,17 +123,39 @@ const HeroSection = () => {
 
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-glow">
-              <img
-                src={heroImage}
-                alt="Interface de gestion d'organigrammes Hieraflow montrant une vue hiérarchique interactive des équipes avec photos et informations détaillées des collaborateurs"
-                className="w-full h-auto object-cover"
-                loading="eager"
-                fetchPriority="high"
-              />
+              {heroImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.src}
+                  alt={image.alt}
+                  className={`w-full h-auto object-cover transition-opacity duration-1000 ${
+                    index === currentIndex
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute inset-0"
+                  }`}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : undefined}
+                />
+              ))}
               <div
                 className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"
                 aria-hidden="true"
               ></div>
+            </div>
+            {/* Carousel indicators */}
+            <div className="flex justify-center gap-2 mt-4">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-white scale-125"
+                      : "bg-white/40 hover:bg-white/60"
+                  }`}
+                  aria-label={`Voir image ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
