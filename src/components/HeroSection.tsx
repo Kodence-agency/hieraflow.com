@@ -121,7 +121,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 py-32 relative z-20">
         <div className="max-w-3xl mx-auto lg:mx-0">
           {/* Text backdrop for readability */}
-          <div className="bg-black/40 backdrop-blur-sm rounded-3xl p-8 lg:p-12 space-y-8">
+          <div className="bg-black/25 backdrop-blur-[2px] rounded-3xl p-8 lg:p-12 space-y-8">
             <div className="space-y-6">
               <div
                 className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 text-white shadow-lg"
