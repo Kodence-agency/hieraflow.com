@@ -55,7 +55,7 @@ const BenefitsSection = () => {
             className="text-4xl lg:text-5xl font-bold text-foreground"
           >
             Pourquoi choisir
-            <span className="block bg-gradient-secondary bg-clip-text text-transparent">
+            <span className="block bg-gradient-hero bg-clip-text text-transparent">
               Hieraflow ?
             </span>
           </h2>
