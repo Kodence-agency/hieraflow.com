@@ -48,6 +48,12 @@ const Header = () => {
               Qui sommes-nous ?
             </Link>
             <Link
+              to="/#faq"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
+            </Link>
+            <Link
               to="/#contact"
               className="text-foreground hover:text-primary transition-colors"
             >
@@ -56,7 +62,9 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="corporate">Démonstration</Button>
+            <Link to="/#contact">
+              <Button variant="corporate">Démonstration</Button>
+            </Link>
           </div>
 
           <button
@@ -92,6 +100,12 @@ const Header = () => {
               className="block text-foreground hover:text-primary transition-colors"
             >
               Qui sommes-nous ?
+            </Link>
+            <Link
+              to="/#faq"
+              className="block text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
             </Link>
             <Link
               to="/#contact"
