@@ -63,7 +63,7 @@ const HeroSection = () => {
     setDirection(index > currentIndex ? "next" : "prev");
     setIsAnimating(true);
     setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 800);
+    setTimeout(() => setIsAnimating(false), 1500);
   };
 
   useEffect(() => {
