@@ -154,7 +154,7 @@ const HeroSection = () => {
                       style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}
                     >
                       <span className="block">{slide.headline}</span>
-                      <span className="block bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+                      <span className="block text-primary">
                         {slide.highlight}
                       </span>
                     </h1>
