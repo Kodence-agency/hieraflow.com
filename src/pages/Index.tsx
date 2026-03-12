@@ -125,6 +125,7 @@ const Index = () => {
       </header>
       <main>
         <HeroSection />
+        <ReferentielSection />
         <DiscoverSection />
         <div id="fonctionnalites">
           <FeaturesSection />
