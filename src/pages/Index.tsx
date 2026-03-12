@@ -90,7 +90,7 @@ const Index = () => {
                 Accueil
               </a>
               <a
-                href="/#fonctionnalites"
+                href="#decouvrir"
                 className="block text-foreground hover:text-primary transition-colors"
               >
                 Fonctionnalités
