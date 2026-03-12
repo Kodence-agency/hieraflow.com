@@ -135,7 +135,7 @@ const HeroSection = () => {
               </div>
 
               {/* Animated text — swipe right to left */}
-              <div className="relative h-[320px] sm:h-[380px] lg:h-[450px] overflow-hidden">
+              <div className="relative h-[250px] sm:h-[300px] lg:h-[350px] overflow-hidden">
                 {heroSlides.map((slide, index) => (
                   <div
                     key={index}
@@ -150,7 +150,7 @@ const HeroSection = () => {
                     }}
                   >
                     <h1
-                      className="text-7xl sm:text-8xl lg:text-9xl xl:text-[10rem] font-bold text-white leading-[1.02]"
+                      className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
                       style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
                     >
                       <span className="block">{slide.headline}</span>
@@ -159,7 +159,7 @@ const HeroSection = () => {
                       </span>
                     </h1>
                     <p
-                      className="mt-6 text-2xl sm:text-3xl lg:text-4xl text-white leading-relaxed max-w-2xl"
+                      className="mt-4 text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed max-w-2xl"
                       style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
                     >
                       {slide.subtitle}
