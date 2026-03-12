@@ -1,83 +1,6 @@
 import { ArrowRight, Users, Building2 } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
-import heroCarousel1 from "@/assets/hero-carousel-1.png";
-import heroCarousel2 from "@/assets/hero-carousel-2.png";
-import heroCarousel3 from "@/assets/hero-carousel-3.png";
-import heroCarousel4 from "@/assets/hero-carousel-4.png";
-import heroCarousel5 from "@/assets/hero-carousel-5.png";
-import heroCarousel6 from "@/assets/hero-carousel-6.png";
-
-const heroSlides = [
-  {
-    src: heroCarousel1,
-    alt: "Équipe collaborant dans un bureau moderne avec interfaces holographiques",
-    headline: "Structurez votre",
-    highlight: "organisation",
-    subtitle: "Libérez le potentiel de vos équipes, et fluidifiez leur coopération.",
-  },
-  {
-    src: heroCarousel2,
-    alt: "Collaboration d'équipe et technologies avancées",
-    headline: "Visualisez votre",
-    highlight: "structure",
-    subtitle: "Un organigramme interactif, toujours à jour, accessible par tous.",
-  },
-  {
-    src: heroCarousel3,
-    alt: "Professionnels connectés dans un réseau d'entreprise",
-    headline: "Connectez vos",
-    highlight: "équipes",
-    subtitle: "Identifiez instantanément le bon interlocuteur, où qu'il soit.",
-  },
-  {
-    src: heroCarousel4,
-    alt: "Équipe analysant des données et présentant des résultats",
-    headline: "Pilotez avec",
-    highlight: "clarté",
-    subtitle: "Des données organisationnelles fiables pour des décisions éclairées.",
-  },
-  {
-    src: heroCarousel5,
-    alt: "Réunion stratégique entre collaborateurs",
-    headline: "Décidez en",
-    highlight: "confiance",
-    subtitle: "Une vision claire de votre organisation pour agir vite et bien.",
-  },
-  {
-    src: heroCarousel6,
-    alt: "Interface d'organigramme Hieraflow sur écran",
-    headline: "Adoptez un outil",
-    highlight: "intuitif",
-    subtitle: "Prise en main immédiate, sans formation, comme un site web.",
-  },
-];
 
 const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const goToSlide = (index: number) => {
-    if (isAnimating || index === currentIndex) return;
-    setDirection(index > currentIndex ? "next" : "prev");
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 1500);
-  };
-
-  useEffect(() => {
-    timeoutRef.current = setInterval(() => {
-      setDirection("next");
-      setIsAnimating(true);
-      setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
-      setTimeout(() => setIsAnimating(false), 1500);
-    }, 7000);
-    return () => {
-      if (timeoutRef.current) clearInterval(timeoutRef.current);
-    };
-  }, []);
-
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1628]"
@@ -90,34 +13,6 @@ const HeroSection = () => {
         Aller au contenu principal
       </a>
 
-      {/* Full-screen carousel background — no overlay, images shown clearly */}
-      <div className="absolute inset-0" aria-hidden="true">
-        {heroSlides.map((slide, index) => (
-          <div
-            key={index}
-            className="absolute inset-0 transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{
-              transform:
-                index === currentIndex
-                  ? "translateX(0%)"
-                  : index < currentIndex || (currentIndex === 0 && index === heroSlides.length - 1 && direction === "next")
-                    ? "translateX(-100%)"
-                    : "translateX(100%)",
-              zIndex: index === currentIndex ? 2 : 1,
-            }}
-          >
-            <img
-              src={slide.src}
-              alt={slide.alt}
-              className="w-full h-full object-cover"
-              loading={index === 0 ? "eager" : "lazy"}
-              fetchPriority={index === 0 ? "high" : undefined}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Content overlay — text panel with backdrop for readability */}
       <div className="container mx-auto px-4 py-32 relative z-20">
         <div className="max-w-4xl mx-auto lg:mx-0">
           {/* Text backdrop for readability */}
@@ -134,38 +29,20 @@ const HeroSection = () => {
                 </span>
               </div>
 
-              {/* Animated text — swipe right to left */}
-              <div className="relative h-[250px] sm:h-[300px] lg:h-[350px] overflow-hidden">
-                {heroSlides.map((slide, index) => (
-                  <div
-                    key={index}
-                    className="absolute inset-0 transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-                    style={{
-                      transform:
-                        index === currentIndex
-                          ? "translateX(0%)"
-                          : index < currentIndex || (currentIndex === 0 && index === heroSlides.length - 1 && direction === "next")
-                            ? "translateX(-110%)"
-                            : "translateX(110%)",
-                    }}
-                  >
-                    <h1
-                      className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
-                      style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
-                    >
-                      <span className="block">{slide.headline}</span>
-                      <span className="block text-white">
-                        {slide.highlight}
-                      </span>
-                    </h1>
-                    <p
-                      className="mt-4 text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed max-w-2xl"
-                      style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
-                    >
-                      {slide.subtitle}
-                    </p>
-                  </div>
-                ))}
+              <div className="space-y-4">
+                <h1
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
+                  style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
+                >
+                  <span className="block">Structurez votre</span>
+                  <span className="block text-white">organisation</span>
+                </h1>
+                <p
+                  className="text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed max-w-2xl"
+                  style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
+                >
+                  Libérez le potentiel de vos équipes, et fluidifiez leur coopération.
+                </p>
               </div>
             </div>
 
@@ -221,22 +98,6 @@ const HeroSection = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Carousel indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5">
-          {heroSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`rounded-full transition-all duration-500 ${
-                index === currentIndex
-                  ? "w-8 h-2.5 bg-white/90 shadow-lg"
-                  : "w-2.5 h-2.5 bg-white/40 hover:bg-white/60"
-              }`}
-              aria-label={`Voir image ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>
