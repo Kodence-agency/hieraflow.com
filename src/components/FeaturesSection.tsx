@@ -36,11 +36,11 @@ const FeaturesSection = () => {
             id="features-title"
             className="text-4xl lg:text-5xl font-bold text-foreground"
           >
-            Soutenir la croissance de
-            <span className="block text-primary">votre organisation</span>
+            Un outil conçu pour
+            <span className="block text-primary">s'adapter à vous</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Quand l'entreprise grandit, la complexité augmente. Sans clarté organisationnelle, la performance ralentit.
+            Une interface intuitive et flexible qui évolue avec votre organisation, quelle que soit sa taille ou sa complexité.
           </p>
         </div>
 
