@@ -36,7 +36,8 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#0a1628]"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #0a1628 0%, #1a3a5c 30%, #2667ff 60%, #34d399 100%)" }}
       role="banner"
     >
       <a
