@@ -115,6 +115,12 @@ const Index = () => {
                 Qui sommes-nous ?
               </a>
               <a
+                href="#faq"
+                className="block text-foreground hover:text-primary transition-colors"
+              >
+                FAQ
+              </a>
+              <a
                 href="/#contact"
                 className="block text-foreground hover:text-primary transition-colors"
               >
