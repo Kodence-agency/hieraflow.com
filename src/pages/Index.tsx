@@ -134,6 +134,7 @@ const Index = () => {
         <div id="avantages">
           <BenefitsSection />
         </div>
+        <FAQSection />
         <div id="contact">
           <ContactSection />
         </div>
