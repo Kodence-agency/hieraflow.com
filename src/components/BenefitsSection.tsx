@@ -1,49 +1,44 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { 
   Clock, 
   Target, 
   Eye, 
   Award, 
   Zap, 
-  Headphones 
+  Headphones,
+  CheckCircle2
 } from "lucide-react";
 
-const benefits = [
+const solutions = [
   {
     icon: Clock,
     title: "Gain de temps",
-    description: "Simplifiez la gestion de vos équipes",
-    color: "text-primary"
+    description: "Simplifiez la gestion de vos équipes au quotidien grâce à une interface centralisée."
   },
   {
     icon: Target,
     title: "Adaptabilité",
-    description: "S'adapte à votre organisation unique",
-    color: "text-secondary"
+    description: "S'adapte à votre organisation unique, quelle que soit sa taille ou son secteur."
   },
   {
     icon: Eye,
     title: "Transparence",
-    description: "Meilleure visibilité organisationnelle",
-    color: "text-accent"
+    description: "Offrez une visibilité totale sur la structure et les compétences de vos équipes."
   },
   {
     icon: Award,
     title: "Image professionnelle",
-    description: "Renforcez votre image d'entreprise",
-    color: "text-primary"
+    description: "Renforcez votre image avec un organigramme moderne et interactif."
   },
   {
     icon: Zap,
     title: "Déploiement facile",
-    description: "Solution 100% cloud ou on-premise",
-    color: "text-secondary"
+    description: "Solution 100% cloud ou on-premise, opérationnelle en quelques heures."
   },
   {
     icon: Headphones,
     title: "Support réactif",
-    description: "Accompagnement et évolutivité assurés",
-    color: "text-accent"
+    description: "Un accompagnement dédié pour garantir votre succès à chaque étape."
   }
 ];
 
@@ -53,43 +48,46 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 id="benefits-title" className="text-4xl lg:text-5xl font-bold text-foreground">
-            Pourquoi choisir
+            Solution
             <span className="block bg-gradient-secondary bg-clip-text text-transparent">
-              Hieraflow ?
+              adaptée
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Découvrez les avantages concrets qui feront de Hieraflow 
-            votre partenaire de choix pour la gestion organisationnelle.
+            Hieraflow s'adapte à chaque organisation pour répondre précisément à vos enjeux.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Avantages de Hieraflow">
-          {benefits.map((benefit, index) => {
-            const IconComponent = benefit.icon;
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          {solutions.map((solution, index) => {
+            const IconComponent = solution.icon;
             return (
-              <Card key={index} className="bg-card/80 backdrop-blur-sm border-0 shadow-card hover:shadow-elegant transition-all duration-300 group hover:-translate-y-2 focus-within:ring-2 focus-within:ring-primary" role="listitem">
-                <CardContent className="p-8 text-center space-y-4">
-                  <div className={`w-16 h-16 mx-auto bg-gradient-to-r from-background to-muted rounded-full flex items-center justify-center group-hover:scale-110 transition-transform`} aria-hidden="true">
-                    <IconComponent className={`w-8 h-8 ${benefit.color}`} />
-                  </div>
-                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {benefit.title}
+              <div 
+                key={index} 
+                className="flex items-start gap-4 p-6 rounded-xl bg-card/80 backdrop-blur-sm shadow-card hover:shadow-elegant transition-all duration-300 group hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 shrink-0 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
+                  <IconComponent className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors mb-1">
+                    {solution.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {benefit.description}
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {solution.description}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             );
           })}
         </div>
-        
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-2 bg-gradient-accent rounded-full px-6 py-3 text-accent-foreground font-semibold" role="note" aria-label="Information sur les types d'organisations">
-            <Award className="w-5 h-5" aria-hidden="true" />
-            <span>Pensé pour les PME, grandes entreprises et administrations</span>
-          </div>
+
+        <div className="text-center">
+          <a href="#contact">
+            <Button variant="corporate" size="lg" className="text-lg px-10 py-6">
+              Demander une démo
+            </Button>
+          </a>
         </div>
       </div>
     </section>
