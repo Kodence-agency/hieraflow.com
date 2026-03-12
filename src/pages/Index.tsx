@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import DiscoverSection from "@/components/DiscoverSection";
 import ReferentielSection from "@/components/ReferentielSection";
+import GrowthSection from "@/components/GrowthSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
@@ -128,6 +129,7 @@ const Index = () => {
         <HeroSection />
         <ReferentielSection />
         <DiscoverSection />
+        <GrowthSection />
         <div id="fonctionnalites">
           <FeaturesSection />
         </div>
