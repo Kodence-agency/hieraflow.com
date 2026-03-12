@@ -13,6 +13,7 @@ const ContactSection = () => {
     lastName: "",
     email: "",
     company: "",
+    employeeCount: "",
     message: "",
     _honey: "",
   });
