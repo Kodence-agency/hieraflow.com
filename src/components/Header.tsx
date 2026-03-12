@@ -48,6 +48,12 @@ const Header = () => {
               Qui sommes-nous ?
             </Link>
             <Link
+              to="/#faq"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
+            </Link>
+            <Link
               to="/#contact"
               className="text-foreground hover:text-primary transition-colors"
             >
