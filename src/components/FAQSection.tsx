@@ -56,7 +56,7 @@ const FAQSection = () => {
         "Combien de temps vos équipes perdent chaque semaine à chercher qui contacter ? Ce temps existe déjà. Hieraflow ne crée pas un coût, il supprime une perte.",
     },
     {
-      question: "\"On n'a pas le temps d'un nouveau projet IT.\"",
+      question: "On n'a pas le temps d'un nouveau projet IT.",
       answer:
         "Justement : Hieraflow n'est pas un projet IT. Paramétrage en quelques jours. Adoption immédiate. Zéro refonte SI.",
     },
