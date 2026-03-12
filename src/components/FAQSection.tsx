@@ -66,7 +66,7 @@ const FAQSection = () => {
         "Les équipes utilisent déjà Google pour chercher de l'info. Hieraflow fonctionne pareil. Pas de formation lourde. Adoption naturelle.",
     },
     {
-      question: "\"On est trop petit pour ça.\"",
+      question: "On est trop petit pour ça.",
       answer:
         "Nos clients commencent souvent à 50–80 collaborateurs. C'est exactement le moment où la structure commence à devenir floue et difficilement maintenable.",
     },
