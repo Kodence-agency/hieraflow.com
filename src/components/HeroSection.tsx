@@ -71,8 +71,8 @@ const HeroSection = () => {
       setDirection("next");
       setIsAnimating(true);
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
-      setTimeout(() => setIsAnimating(false), 800);
-    }, 5000);
+      setTimeout(() => setIsAnimating(false), 1500);
+    }, 7000);
     return () => {
       if (timeoutRef.current) clearInterval(timeoutRef.current);
     };
