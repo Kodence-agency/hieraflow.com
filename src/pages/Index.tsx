@@ -129,6 +129,7 @@ const Index = () => {
         <HeroSection />
         <ReferentielSection />
         <DiscoverSection />
+        <GrowthSection />
         <div id="fonctionnalites">
           <FeaturesSection />
         </div>
