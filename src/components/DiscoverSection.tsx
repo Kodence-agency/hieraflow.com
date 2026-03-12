@@ -137,9 +137,9 @@ const DiscoverSection = () => {
     },
     {
       icon: Cloud,
-      title: "Déploiement flexible",
+      title: "Déploiement et intégration",
       description:
-        "Solution 100% cloud ou on-premise selon vos exigences de sécurité.",
+        "Solution 100% cloud ou on-premise selon vos exigences de sécurité et qui communique avec votre écosystème.",
       details: {
         subtitle: "Infrastructure adaptée à vos besoins",
         content: [
