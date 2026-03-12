@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import DiscoverSection from "@/components/DiscoverSection";
+import ReferentielSection from "@/components/ReferentielSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
@@ -124,6 +125,7 @@ const Index = () => {
       </header>
       <main>
         <HeroSection />
+        <ReferentielSection />
         <DiscoverSection />
         <div id="fonctionnalites">
           <FeaturesSection />
