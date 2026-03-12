@@ -159,7 +159,7 @@ const HeroSection = () => {
                       </span>
                     </h1>
                     <p
-                      className="mt-4 text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed max-w-xl"
+                      className="mt-6 text-2xl sm:text-3xl lg:text-4xl text-white leading-relaxed max-w-2xl"
                       style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
                     >
                       {slide.subtitle}
