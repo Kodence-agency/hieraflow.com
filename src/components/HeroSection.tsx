@@ -130,16 +130,25 @@ const HeroSection = () => {
           {/* Right — Image carousel */}
           <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
             {heroSlides.map((slide, index) => (
-              <img
+              <div
                 key={index}
-                src={slide.src}
-                alt={slide.alt}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                className={`absolute inset-0 transition-opacity duration-700 ${
                   index === currentIndex ? "opacity-100" : "opacity-0"
                 }`}
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : undefined}
-              />
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : undefined}
+                />
+                <div className="absolute bottom-10 left-0 right-0 flex justify-center">
+                  <span className="bg-black/50 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                    {slide.title}
+                  </span>
+                </div>
+              </div>
             ))}
 
             {/* Carousel indicators */}
