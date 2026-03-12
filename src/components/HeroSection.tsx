@@ -1,9 +1,42 @@
 import { ArrowRight, Users, Building2 } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import heroCarousel1 from "@/assets/hero-carousel-1.png";
+import heroCarousel2 from "@/assets/hero-carousel-2.png";
+import heroCarousel3 from "@/assets/hero-carousel-3.png";
+import heroCarousel4 from "@/assets/hero-carousel-4.png";
+import heroCarousel5 from "@/assets/hero-carousel-5.png";
+import heroCarousel6 from "@/assets/hero-carousel-6.png";
+
+const heroSlides = [
+  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne" },
+  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées" },
+  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise" },
+  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats" },
+  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs" },
+  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran" },
+];
 
 const HeroSection = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const goToSlide = (index: number) => {
+    if (index === currentIndex) return;
+    setCurrentIndex(index);
+  };
+
+  useEffect(() => {
+    timeoutRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => {
+      if (timeoutRef.current) clearInterval(timeoutRef.current);
+    };
+  }, []);
+
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1628]"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#0a1628]"
       role="banner"
     >
       <a
@@ -13,37 +46,35 @@ const HeroSection = () => {
         Aller au contenu principal
       </a>
 
-      <div className="container mx-auto px-4 py-32 relative z-20">
-        <div className="max-w-4xl mx-auto lg:mx-0">
-          {/* Text backdrop for readability */}
-          <div className="bg-gradient-to-r from-blue-500/50 to-green-400/40 rounded-3xl p-10 lg:p-16 space-y-8">
-            <div className="space-y-6">
-              <div
-                className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 text-white shadow-lg"
-                role="note"
-                aria-label="Information sur le type de solution"
-              >
-                <Building2 className="w-4 h-4" aria-hidden="true" />
-                <span className="text-sm font-medium tracking-wide">
-                  Solution SaaS & on-premise
-                </span>
-              </div>
+      <div className="container mx-auto px-4 py-24 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          {/* Left — Text content */}
+          <div className="space-y-8">
+            <div
+              className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 text-white shadow-lg"
+              role="note"
+              aria-label="Information sur le type de solution"
+            >
+              <Building2 className="w-4 h-4" aria-hidden="true" />
+              <span className="text-sm font-medium tracking-wide">
+                Solution SaaS & on-premise
+              </span>
+            </div>
 
-              <div className="space-y-4">
-                <h1
-                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
-                  style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
-                >
-                  <span className="block">Structurez votre</span>
-                  <span className="block text-white">organisation</span>
-                </h1>
-                <p
-                  className="text-xl sm:text-2xl lg:text-3xl text-white leading-relaxed max-w-2xl"
-                  style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
-                >
-                  Libérez le potentiel de vos équipes, et fluidifiez leur coopération.
-                </p>
-              </div>
+            <div className="space-y-4">
+              <h1
+                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08]"
+                style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
+              >
+                <span className="block">Structurez votre</span>
+                <span className="block">organisation</span>
+              </h1>
+              <p
+                className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
+              >
+                Libérez le potentiel de vos équipes, et fluidifiez leur coopération.
+              </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -83,19 +114,47 @@ const HeroSection = () => {
                 role="listitem"
               >
                 <Users className="w-4 h-4 text-accent" aria-hidden="true" />
-                <span className="text-white/90 text-sm">
-                  PME • grandes entreprises
-                </span>
+                <span className="text-white/90 text-sm">PME • grandes entreprises</span>
               </div>
               <div
                 className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10"
                 role="listitem"
               >
                 <Building2 className="w-4 h-4 text-secondary" aria-hidden="true" />
-                <span className="text-white/90 text-sm">
-                  Administrations
-                </span>
+                <span className="text-white/90 text-sm">Administrations</span>
               </div>
+            </div>
+          </div>
+
+          {/* Right — Image carousel */}
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            {heroSlides.map((slide, index) => (
+              <img
+                key={index}
+                src={slide.src}
+                alt={slide.alt}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : undefined}
+              />
+            ))}
+
+            {/* Carousel indicators */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+              {heroSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`rounded-full transition-all duration-500 ${
+                    index === currentIndex
+                      ? "w-7 h-2 bg-white/90 shadow-lg"
+                      : "w-2 h-2 bg-white/40 hover:bg-white/60"
+                  }`}
+                  aria-label={`Voir image ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
