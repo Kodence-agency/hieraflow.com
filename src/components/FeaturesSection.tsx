@@ -36,11 +36,11 @@ const FeaturesSection = () => {
             id="features-title"
             className="text-4xl lg:text-5xl font-bold text-foreground"
           >
-            Un outil conçu pour
-            <span className="block text-primary">s'adapter à vous</span>
+            Une solution pensée pour
+            <span className="block text-primary">répondre à vos besoins</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Une interface intuitive et flexible qui évolue avec votre organisation, quelle que soit sa taille ou sa complexité.
+            Chaque fonctionnalité a été conçue pour simplifier votre quotidien et accompagner votre organisation à chaque étape.
           </p>
         </div>
 
