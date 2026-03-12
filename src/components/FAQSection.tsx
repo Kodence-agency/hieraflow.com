@@ -81,7 +81,7 @@ const FAQSection = () => {
         "Hieraflow s'adapte à toutes les tailles. Des discriminants (département, service) facilitent la lisibilité de l'affichage, configurables directement par l'utilisateur.",
     },
     {
-      question: "\"On peut le faire nous-mêmes sur Excel / PowerPoint.\"",
+      question: "On peut le faire nous-mêmes sur Excel / PowerPoint.",
       answer:
         "Vous pouvez aussi faire votre comptabilité sur Excel. La question est : est-ce fiable, à jour, partagé et utilisable par tous ceux qui en ont besoin chaque jour ?",
     },
