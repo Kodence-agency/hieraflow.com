@@ -1,4 +1,4 @@
-import { TrendingUp, Users, Zap, Shield, Target, ArrowRight } from "lucide-react";
+import { TrendingUp, Users, Zap, Shield, Target, Network, UserCheck, MapPin, UserPlus, BarChart3 } from "lucide-react";
 
 const challenges = [
   {
@@ -24,34 +24,32 @@ const challenges = [
 ];
 
 const solutions = [
-  "Un organigramme toujours à jour, accessible par tous en temps réel",
-  "Une identification instantanée des rôles, rattachements et contacts",
-  "Une navigation intuitive dans la structure, même multi-sites",
-  "Une intégration accélérée des nouveaux collaborateurs",
-  "Des données organisationnelles fiables pour piloter la croissance",
+  {
+    icon: Network,
+    text: "Un organigramme toujours à jour, accessible par tous en temps réel",
+  },
+  {
+    icon: UserCheck,
+    text: "Une identification instantanée des rôles, rattachements et contacts",
+  },
+  {
+    icon: MapPin,
+    text: "Une navigation intuitive dans la structure, même multi-sites",
+  },
+  {
+    icon: UserPlus,
+    text: "Une intégration accélérée des nouveaux collaborateurs",
+  },
+  {
+    icon: BarChart3,
+    text: "Des données organisationnelles fiables pour piloter la croissance",
+  },
 ];
 
 const GrowthSection = () => {
   return (
     <section className="py-24 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="growth-title">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 text-primary mb-6">
-            <TrendingUp className="w-4 h-4" />
-            <span className="text-sm font-medium">Accompagner votre croissance</span>
-          </div>
-          <h2
-            id="growth-title"
-            className="text-4xl lg:text-5xl font-bold text-foreground mb-6"
-          >
-            Soutenir la croissance de
-            <span className="block text-primary">votre organisation</span>
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Quand l'entreprise grandit, la complexité augmente. Sans clarté organisationnelle, la performance ralentit. Hieraflow donne à chacun la visibilité nécessaire pour avancer vite et bien.
-          </p>
-        </div>
-
         {/* Challenges grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {challenges.map((item, index) => {
@@ -71,31 +69,39 @@ const GrowthSection = () => {
           })}
         </div>
 
-        {/* Solution block */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-2xl bg-gradient-primary p-10 lg:p-14 overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_60%)]" aria-hidden="true" />
-            <div className="relative z-10">
-              <h3
-                className="text-2xl lg:text-3xl font-bold text-primary-foreground mb-3"
-                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.15)" }}
-              >
-                Ce que Hieraflow apporte
-              </h3>
-              <p className="text-primary-foreground/80 mb-8 text-lg">
-                Une plateforme qui transforme la complexité en clarté.
-              </p>
-              <ul className="space-y-4">
-                {solutions.map((solution, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="mt-1 w-5 h-5 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                      <ArrowRight className="w-3 h-3 text-primary-foreground" />
-                    </div>
-                    <span className="text-primary-foreground/90 text-base leading-relaxed">{solution}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        {/* Solution bubbles block */}
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 text-primary mb-6">
+            <TrendingUp className="w-4 h-4" />
+            <span className="text-sm font-medium">Ce que Hieraflow apporte</span>
+          </div>
+          <h2
+            id="growth-title"
+            className="text-3xl lg:text-4xl font-bold text-foreground mb-4"
+          >
+            Une plateforme qui transforme
+            <span className="block bg-gradient-secondary bg-clip-text text-transparent">
+              la complexité en clarté
+            </span>
+          </h2>
+
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+            {solutions.map((solution, index) => {
+              const IconComponent = solution.icon;
+              return (
+                <div
+                  key={index}
+                  className="group flex items-center gap-3 bg-card border border-border/60 rounded-full px-6 py-4 shadow-card hover:shadow-elegant hover:border-primary/30 hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="w-10 h-10 shrink-0 bg-gradient-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
+                    <IconComponent className="w-5 h-5 text-primary-foreground" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground leading-snug text-left">
+                    {solution.text}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
