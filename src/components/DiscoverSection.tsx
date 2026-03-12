@@ -256,54 +256,27 @@ const DiscoverSection = () => {
           ))}
         </div>
 
-        <div className="bg-card rounded-2xl p-8 lg:p-12 shadow-card border border-border/50">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-3xl font-bold text-foreground mb-6">
-                Pourquoi choisir Hieraflow ?
-              </h3>
-              <div className="space-y-4 mb-8">
-                {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{benefit}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="corporate" size="lg" className="group" asChild>
-                  <a href="#contact">
-                    Demander une démo
-                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </Button>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-8 backdrop-blur-sm">
-                <div className="text-center">
-                  <Building2 className="w-16 h-16 text-primary mx-auto mb-6" />
-                  <h4 className="text-2xl font-bold text-foreground mb-4">
-                    Solution Adaptée
-                  </h4>
-                  <p className="text-muted-foreground mb-6">
-                    Que vous soyez une PME de 10 employés ou une grande
-                    entreprise de 10 000 collaborateurs, Hieraflow s'adapte à
-                    votre structure organisationnelle.
-                  </p>
-                  <div className="flex items-center justify-center space-x-6 text-sm text-muted-foreground">
-                    <span>PME</span>
-                    <div className="w-8 h-px bg-border"></div>
-                    <span>Grandes Entreprises</span>
-                    <div className="w-8 h-px bg-border"></div>
-                    <span>Administrations</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-10 lg:p-14 shadow-card border border-border/50 text-center max-w-3xl mx-auto">
+          <Building2 className="w-14 h-14 text-primary mx-auto mb-6" />
+          <h3 className="text-3xl font-bold text-foreground mb-4">
+            Solution adaptée
+          </h3>
+          <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+            Que vous soyez une PME de 10 employés ou une grande
+            entreprise de 10 000 collaborateurs, Hieraflow s'adapte à
+            votre structure organisationnelle.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+            <span className="px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium text-sm">PME</span>
+            <span className="px-5 py-2.5 rounded-full bg-secondary/20 text-secondary font-medium text-sm">Grandes entreprises</span>
+            <span className="px-5 py-2.5 rounded-full bg-accent/20 text-accent font-medium text-sm">Administrations</span>
           </div>
+          <Button variant="corporate" size="lg" className="group" asChild>
+            <a href="#contact">
+              Demander une démo
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
