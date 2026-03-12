@@ -86,7 +86,7 @@ const FAQSection = () => {
         "Vous pouvez aussi faire votre comptabilité sur Excel. La question est : est-ce fiable, à jour, partagé et utilisable par tous ceux qui en ont besoin chaque jour ?",
     },
     {
-      question: "\"On manque déjà d'outils.\"",
+      question: "On manque déjà d'outils.",
       answer:
         "Hieraflow remplace des fichiers, PowerPoint, tableaux et intranet bricolés. Il simplifie votre écosystème, il ne rajoute pas une couche.",
     },
