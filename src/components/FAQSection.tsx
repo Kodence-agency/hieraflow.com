@@ -51,7 +51,7 @@ const FAQSection = () => {
         "Votre SIRH stocke des données RH. Hieraflow rend les données de l'organisation visibles et actionnables par tous. Ce n'est pas le même usage.",
     },
     {
-      question: "\"Ce n'est pas prioritaire.\"",
+      question: "Ce n'est pas prioritaire.",
       answer:
         "Combien de temps vos équipes perdent chaque semaine à chercher qui contacter ? Ce temps existe déjà. Hieraflow ne crée pas un coût, il supprime une perte.",
     },
