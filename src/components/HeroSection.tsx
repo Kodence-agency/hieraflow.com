@@ -36,7 +36,7 @@ const HeroSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#0a1628]"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-r from-blue-500/50 to-green-400/40 bg-[#0a1628]"
       role="banner"
     >
       <a
