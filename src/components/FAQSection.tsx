@@ -71,7 +71,7 @@ const FAQSection = () => {
         "Nos clients commencent souvent à 50–80 collaborateurs. C'est exactement le moment où la structure commence à devenir floue et difficilement maintenable.",
     },
     {
-      question: "\"On est trop grand / trop complexe.\"",
+      question: "On est trop grand / trop complexe.",
       answer:
         "Hieraflow est conçu pour les structures multi-équipes, multi-sites et multi-rattachements. C'est précisément là qu'il apporte le plus de valeur.",
     },
