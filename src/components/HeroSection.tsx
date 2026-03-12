@@ -7,13 +7,49 @@ import heroCarousel4 from "@/assets/hero-carousel-4.png";
 import heroCarousel5 from "@/assets/hero-carousel-5.png";
 import heroCarousel6 from "@/assets/hero-carousel-6.png";
 
-const heroImages = [
-  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne avec interfaces holographiques" },
-  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées" },
-  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise" },
-  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats" },
-  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs" },
-  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran" },
+const heroSlides = [
+  {
+    src: heroCarousel1,
+    alt: "Équipe collaborant dans un bureau moderne avec interfaces holographiques",
+    headline: "Structurez votre",
+    highlight: "organisation",
+    subtitle: "Libérez le potentiel de vos équipes, et fluidifiez leur coopération.",
+  },
+  {
+    src: heroCarousel2,
+    alt: "Collaboration d'équipe et technologies avancées",
+    headline: "Visualisez votre",
+    highlight: "structure",
+    subtitle: "Un organigramme interactif, toujours à jour, accessible par tous.",
+  },
+  {
+    src: heroCarousel3,
+    alt: "Professionnels connectés dans un réseau d'entreprise",
+    headline: "Connectez vos",
+    highlight: "équipes",
+    subtitle: "Identifiez instantanément le bon interlocuteur, où qu'il soit.",
+  },
+  {
+    src: heroCarousel4,
+    alt: "Équipe analysant des données et présentant des résultats",
+    headline: "Pilotez avec",
+    highlight: "clarté",
+    subtitle: "Des données organisationnelles fiables pour des décisions éclairées.",
+  },
+  {
+    src: heroCarousel5,
+    alt: "Réunion stratégique entre collaborateurs",
+    headline: "Décidez en",
+    highlight: "confiance",
+    subtitle: "Une vision claire de votre organisation pour agir vite et bien.",
+  },
+  {
+    src: heroCarousel6,
+    alt: "Interface d'organigramme Hieraflow sur écran",
+    headline: "Adoptez un outil",
+    highlight: "intuitif",
+    subtitle: "Prise en main immédiate, sans formation, comme un site web.",
+  },
 ];
 
 const HeroSection = () => {
@@ -21,7 +57,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+      setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -40,11 +76,11 @@ const HeroSection = () => {
 
       {/* Full-screen carousel background */}
       <div className="absolute inset-0" aria-hidden="true">
-        {heroImages.map((image, index) => (
+        {heroSlides.map((slide, index) => (
           <img
             key={index}
-            src={image.src}
-            alt={image.alt}
+            src={slide.src}
+            alt={slide.alt}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${
               index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
@@ -52,9 +88,9 @@ const HeroSection = () => {
             fetchPriority={index === 0 ? "high" : undefined}
           />
         ))}
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
+        {/* Blue-tinted overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[hsla(215,60%,20%,0.55)] via-[hsla(215,50%,30%,0.35)] to-[hsla(215,60%,15%,0.6)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[hsla(215,55%,18%,0.5)] via-transparent to-transparent" />
       </div>
 
       {/* Content overlay */}
@@ -72,22 +108,35 @@ const HeroSection = () => {
               </span>
             </div>
 
-            <h1
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
-              style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4), 0 4px 40px rgba(0,0,0,0.2)" }}
-            >
-              <span className="block">Structurez votre</span>
-              <span className="block bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent drop-shadow-lg">
-                organisation
-              </span>
-            </h1>
-
-            <p
-              className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl"
-              style={{ textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}
-            >
-              Libérez le potentiel de vos équipes, et fluidifiez leur coopération.
-            </p>
+            {/* Animated text per slide */}
+            <div className="relative h-[200px] sm:h-[220px] lg:h-[260px]">
+              {heroSlides.map((slide, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                    index === currentIndex
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <h1
+                    className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05]"
+                    style={{ textShadow: "0 2px 20px rgba(0,0,0,0.4), 0 4px 40px rgba(0,0,0,0.2)" }}
+                  >
+                    <span className="block">{slide.headline}</span>
+                    <span className="block bg-gradient-to-r from-accent to-primary-glow bg-clip-text text-transparent drop-shadow-lg">
+                      {slide.highlight}
+                    </span>
+                  </h1>
+                  <p
+                    className="mt-4 text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-xl"
+                    style={{ textShadow: "0 1px 10px rgba(0,0,0,0.3)" }}
+                  >
+                    {slide.subtitle}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -145,7 +194,7 @@ const HeroSection = () => {
 
         {/* Carousel indicators - bottom center */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2.5">
-          {heroImages.map((_, index) => (
+          {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
