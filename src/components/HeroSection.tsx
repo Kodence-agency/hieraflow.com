@@ -56,7 +56,7 @@ const HeroSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<"next" | "prev">("next");
   const [isAnimating, setIsAnimating] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goToSlide = (index: number) => {
     if (isAnimating || index === currentIndex) return;
