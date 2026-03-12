@@ -13,6 +13,7 @@ const ContactSection = () => {
     lastName: "",
     email: "",
     company: "",
+    employeeCount: "",
     message: "",
     _honey: "",
   });
@@ -38,6 +39,7 @@ const ContactSection = () => {
           lastName: "",
           email: "",
           company: "",
+          employeeCount: "",
           message: "",
           _honey: "",
         });
@@ -136,6 +138,18 @@ const ContactSection = () => {
                     className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
                     value={form.company}
                     onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="employeeCount" className="sr-only">Nombre d'employés</label>
+                  <Input
+                    id="employeeCount"
+                    placeholder="Nombre d'employés"
+                    type="number"
+                    min="1"
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                    value={form.employeeCount}
+                    onChange={(e) => setForm({ ...form, employeeCount: e.target.value })}
                   />
                 </div>
                 <div>
