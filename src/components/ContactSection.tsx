@@ -141,6 +141,17 @@ const ContactSection = () => {
                   />
                 </div>
                 <div>
+                  <label htmlFor="employeeCount" className="sr-only">Nombre d'employés</label>
+                  <Input
+                    id="employeeCount"
+                    placeholder="Nombre d'employés"
+                    type="number"
+                    min="1"
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                    value={form.employeeCount}
+                    onChange={(e) => setForm({ ...form, employeeCount: e.target.value })}
+                  />
+                <div>
                   <label htmlFor="message" className="sr-only">Message</label>
                   <Textarea
                     id="message"
