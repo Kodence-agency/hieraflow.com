@@ -91,28 +91,6 @@ const FeaturesSection = () => {
           </div>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Liste des fonctionnalités">
-          {features.map((feature, index) => {
-            const IconComponent = feature.icon;
-            return (
-              <Card key={index} className="border-0 shadow-card hover:shadow-elegant transition-all duration-300 group focus-within:ring-2 focus-within:ring-primary" role="listitem">
-                <CardHeader className="space-y-4">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
-                    <IconComponent className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
       </div>
     </section>
   );

@@ -48,13 +48,13 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 id="benefits-title" className="text-4xl lg:text-5xl font-bold text-foreground">
-            Solution
+            Pourquoi choisir
             <span className="block bg-gradient-secondary bg-clip-text text-transparent">
-              adaptée
+              Hieraflow ?
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Hieraflow s'adapte à chaque organisation pour répondre précisément à vos enjeux.
+            Des équipes alignées, une organisation lisible, et des décisions prises plus vite : Hieraflow donne à chaque collaborateur la clarté dont il a besoin pour avancer.
           </p>
         </div>
         
