@@ -12,7 +12,7 @@ import {
 const interfacePoints = [
   { icon: Sparkles, text: "Interface intuitive et responsive", description: "Navigation fluide sur tous les appareils" },
   { icon: Palette, text: "Personnalisation selon votre charte", description: "Couleurs, logos et templates adaptés" },
-  { icon: Rocket, text: "Déploiement rapide et sécurisé", description: "Opérationnel en quelques heures" },
+  { icon: Rocket, text: "Intégration rapide", description: "Connectez Hieraflow à vos outils existants en quelques clics" },
   { icon: Users, text: "Gestion collaborative des équipes", description: "Rôles, permissions et accès centralisés" },
   { icon: Building2, text: "Multi-sites et multi-entités", description: "Une vue unifiée de toute votre organisation" },
 ];
