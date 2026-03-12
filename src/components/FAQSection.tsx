@@ -101,7 +101,7 @@ const FAQSection = () => {
         "Gestion fine des rôles, bases chiffrées et mécanismes d'authentification en mode SaaS. En mode on-premise, vous gardez la maîtrise totale de vos données.",
     },
     {
-      question: "\"On verra plus tard.\"",
+      question: "On verra plus tard.",
       answer:
         "Plus vous grandissez, plus la structure devient difficile à rattraper. Le bon moment, c'est avant que le flou ne coûte cher.",
     },
