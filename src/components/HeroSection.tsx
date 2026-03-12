@@ -1,22 +1,19 @@
 import { ArrowRight, Users, Building2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import heroCollaboration from "@/assets/hero-collaboration.jpg";
-import heroSharing from "@/assets/hero-sharing.jpg";
-import heroPresentation from "@/assets/hero-presentation.jpg";
+import heroCarousel1 from "@/assets/hero-carousel-1.png";
+import heroCarousel2 from "@/assets/hero-carousel-2.png";
+import heroCarousel3 from "@/assets/hero-carousel-3.png";
+import heroCarousel4 from "@/assets/hero-carousel-4.png";
+import heroCarousel5 from "@/assets/hero-carousel-5.png";
+import heroCarousel6 from "@/assets/hero-carousel-6.png";
 
 const heroImages = [
-  {
-    src: heroCollaboration,
-    alt: "Équipe collaborant sur un projet autour d'une table dans un bureau moderne",
-  },
-  {
-    src: heroSharing,
-    alt: "Personnes heureuses partageant des informations et échangeant des idées",
-  },
-  {
-    src: heroPresentation,
-    alt: "Personne présentant des résultats à un groupe de collègues dans une salle de réunion",
-  },
+  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne avec interfaces holographiques" },
+  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées" },
+  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise" },
+  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats" },
+  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs" },
+  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran" },
 ];
 
 const HeroSection = () => {
