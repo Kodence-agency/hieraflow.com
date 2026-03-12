@@ -156,13 +156,6 @@ const DiscoverSection = () => {
     },
   ];
 
-  const benefits = [
-    "Gain de temps dans la gestion des équipes",
-    "Adaptabilité parfaite à votre organisation",
-    "Transparence organisationnelle renforcée",
-    "Image professionnelle valorisée",
-    "Support client réactif et évolutivité assurée",
-  ];
 
   return (
     <section
