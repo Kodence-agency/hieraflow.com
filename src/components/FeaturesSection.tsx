@@ -44,14 +44,14 @@ const FeaturesSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
           {/* Left — Interface */}
-          <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl p-8 lg:p-10 shadow-card border border-border/40 flex flex-col">
+          <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl p-8 lg:p-10 shadow-card border border-border/40">
             <h3 className="text-2xl font-bold text-foreground mb-2">
               Une interface pensée pour vous
             </h3>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-muted-foreground mb-6">
               Chaque fonctionnalité a été conçue pour simplifier votre quotidien et améliorer la collaboration.
             </p>
-            <ul className="space-y-5 flex-1" role="list" aria-label="Points clés de l'interface">
+            <ul className="space-y-4" role="list" aria-label="Points clés de l'interface">
               {interfacePoints.map((point, index) => {
                 const IconComponent = point.icon;
                 return (
