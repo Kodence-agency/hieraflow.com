@@ -150,8 +150,8 @@ const HeroSection = () => {
                     }}
                   >
                     <h1
-                      className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]"
-                      style={{ textShadow: "0 0 8px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.15)" }}
+                      className="text-6xl sm:text-7xl lg:text-8xl font-bold text-white leading-[1.05]"
+                      style={{ textShadow: "0 2px 16px rgba(0,0,0,0.5)" }}
                     >
                       <span className="block">{slide.headline}</span>
                       <span
