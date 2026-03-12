@@ -135,7 +135,7 @@ const HeroSection = () => {
               </div>
 
               {/* Animated text — swipe right to left */}
-              <div className="relative h-[180px] sm:h-[200px] lg:h-[220px] overflow-hidden">
+              <div className="relative h-[220px] sm:h-[250px] lg:h-[280px] overflow-hidden">
                 {heroSlides.map((slide, index) => (
                   <div
                     key={index}
