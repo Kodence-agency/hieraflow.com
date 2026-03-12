@@ -1,12 +1,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import featuresImage from "@/assets/features-dashboard.jpg";
 import { 
   Network, 
   Users2, 
   Smartphone, 
   Shield, 
   Settings, 
-  Cloud 
+  Cloud,
+  CheckCircle2,
+  Sparkles,
+  Palette,
+  Rocket
 } from "lucide-react";
 
 const features = [
@@ -42,53 +45,49 @@ const features = [
   }
 ];
 
+const interfacePoints = [
+  { icon: Sparkles, text: "Interface intuitive et responsive" },
+  { icon: Palette, text: "Personnalisation selon votre charte" },
+  { icon: Rocket, text: "Déploiement rapide et sécurisé" },
+];
+
 const FeaturesSection = () => {
   return (
     <section id="main-content" className="py-20 bg-background" aria-labelledby="features-title">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 id="features-title" className="text-4xl lg:text-5xl font-bold text-foreground">
-            Aider les organisations à fonctionner
-            <span className="block text-primary">en toute clarté</span>
+            Soutenir la croissance de
+            <span className="block text-primary">votre organisation</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Hieraflow combine simplicité et puissance pour offrir une expérience 
-            de gestion organisationnelle sans précédent.
+            Quand l'entreprise grandit, la complexité augmente. Sans clarté organisationnelle, la performance ralentit.
           </p>
         </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          <div className="relative">
-            <img 
-              src={featuresImage} 
-              alt="Interface utilisateur de Hieraflow présentant le tableau de bord de gestion des organigrammes avec vue hiérarchique, profils collaborateurs et outils d'administration" 
-              className="w-full h-auto rounded-2xl shadow-card"
-              loading="lazy"
-            />
-          </div>
-          
-          <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-foreground">
+
+        {/* Interface section - redesigned without image */}
+        <div className="max-w-4xl mx-auto mb-20">
+          <div className="bg-gradient-to-br from-card to-muted/30 rounded-2xl p-10 shadow-card">
+            <h3 className="text-3xl font-bold text-foreground mb-4 text-center">
               Une interface pensée pour vous
             </h3>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
               Chaque fonctionnalité de Hieraflow a été conçue pour simplifier 
               votre quotidien et améliorer la collaboration au sein de votre organisation.
             </p>
-            <ul className="space-y-4" role="list" aria-label="Avantages de l'interface">
-              <li className="flex items-center space-x-3" role="listitem">
-                <div className="w-2 h-2 bg-primary rounded-full" aria-hidden="true"></div>
-                <span className="text-foreground">Interface intuitive et responsive</span>
-              </li>
-              <li className="flex items-center space-x-3" role="listitem">
-                <div className="w-2 h-2 bg-secondary rounded-full" aria-hidden="true"></div>
-                <span className="text-foreground">Personnalisation selon votre charte</span>
-              </li>
-              <li className="flex items-center space-x-3" role="listitem">
-                <div className="w-2 h-2 bg-accent rounded-full" aria-hidden="true"></div>
-                <span className="text-foreground">Déploiement rapide et sécurisé</span>
-              </li>
-            </ul>
+            <div className="grid sm:grid-cols-3 gap-6">
+              {interfacePoints.map((point, index) => {
+                const IconComponent = point.icon;
+                return (
+                  <div key={index} className="flex flex-col items-center text-center gap-3 p-4">
+                    <div className="w-14 h-14 bg-gradient-primary rounded-xl flex items-center justify-center">
+                      <IconComponent className="w-7 h-7 text-primary-foreground" />
+                    </div>
+                    <span className="text-foreground font-medium">{point.text}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
         
