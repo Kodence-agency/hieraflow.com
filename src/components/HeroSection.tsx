@@ -8,12 +8,12 @@ import heroCarousel5 from "@/assets/hero-carousel-5.png";
 import heroCarousel6 from "@/assets/hero-carousel-6.png";
 
 const heroSlides = [
-  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne" },
-  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées" },
-  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise" },
-  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats" },
-  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs" },
-  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran" },
+  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne", title: "Collaboration en temps réel" },
+  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées", title: "Technologies avancées" },
+  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise", title: "Réseau d'entreprise" },
+  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats", title: "Analyse & reporting" },
+  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs", title: "Stratégie collective" },
+  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran", title: "Interface intuitive" },
 ];
 
 const HeroSection = () => {
@@ -130,16 +130,25 @@ const HeroSection = () => {
           {/* Right — Image carousel */}
           <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
             {heroSlides.map((slide, index) => (
-              <img
+              <div
                 key={index}
-                src={slide.src}
-                alt={slide.alt}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                className={`absolute inset-0 transition-opacity duration-700 ${
                   index === currentIndex ? "opacity-100" : "opacity-0"
                 }`}
-                loading={index === 0 ? "eager" : "lazy"}
-                fetchPriority={index === 0 ? "high" : undefined}
-              />
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : undefined}
+                />
+                <div className="absolute bottom-10 left-0 right-0 flex justify-center">
+                  <span className="bg-black/50 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-full">
+                    {slide.title}
+                  </span>
+                </div>
+              </div>
             ))}
 
             {/* Carousel indicators */}
