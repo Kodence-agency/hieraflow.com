@@ -94,7 +94,7 @@ const GrowthSection = () => {
             className="text-3xl lg:text-4xl font-bold text-foreground mb-4"
           >
             La réponse à vos
-            <span className="block bg-gradient-secondary bg-clip-text text-transparent">
+            <span className="block bg-gradient-primary bg-clip-text text-transparent">
               défis organisationnels
             </span>
           </h2>
