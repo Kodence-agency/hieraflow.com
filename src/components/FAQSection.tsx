@@ -61,7 +61,7 @@ const FAQSection = () => {
         "Justement : Hieraflow n'est pas un projet IT. Paramétrage en quelques jours. Adoption immédiate. Zéro refonte SI.",
     },
     {
-      question: "\"Nos équipes ne vont pas l'utiliser.\"",
+      question: "Nos équipes ne vont pas l'utiliser.",
       answer:
         "Les équipes utilisent déjà Google pour chercher de l'info. Hieraflow fonctionne pareil. Pas de formation lourde. Adoption naturelle.",
     },
