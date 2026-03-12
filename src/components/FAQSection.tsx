@@ -41,37 +41,37 @@ const FAQSection = () => {
       ),
     },
     {
-      question: "\"On a déjà un organigramme.\"",
+      question: "On a déjà un organigramme.",
       answer:
         "Est-il à jour en temps réel ou mis à jour après chaque mouvement ? La vraie question n'est pas d'avoir un organigramme, c'est d'avoir une structure fiable, utilisable par vos équipes au quotidien.",
     },
     {
-      question: "\"On a déjà un SIRH.\"",
+      question: "On a déjà un SIRH.",
       answer:
         "Votre SIRH stocke des données RH. Hieraflow rend les données de l'organisation visibles et actionnables par tous. Ce n'est pas le même usage.",
     },
     {
-      question: "\"Ce n'est pas prioritaire.\"",
+      question: "Ce n'est pas prioritaire.",
       answer:
         "Combien de temps vos équipes perdent chaque semaine à chercher qui contacter ? Ce temps existe déjà. Hieraflow ne crée pas un coût, il supprime une perte.",
     },
     {
-      question: "\"On n'a pas le temps d'un nouveau projet IT.\"",
+      question: "On n'a pas le temps d'un nouveau projet IT.",
       answer:
         "Justement : Hieraflow n'est pas un projet IT. Paramétrage en quelques jours. Adoption immédiate. Zéro refonte SI.",
     },
     {
-      question: "\"Nos équipes ne vont pas l'utiliser.\"",
+      question: "Nos équipes ne vont pas l'utiliser.",
       answer:
         "Les équipes utilisent déjà Google pour chercher de l'info. Hieraflow fonctionne pareil. Pas de formation lourde. Adoption naturelle.",
     },
     {
-      question: "\"On est trop petit pour ça.\"",
+      question: "On est trop petit pour ça.",
       answer:
         "Nos clients commencent souvent à 50–80 collaborateurs. C'est exactement le moment où la structure commence à devenir floue et difficilement maintenable.",
     },
     {
-      question: "\"On est trop grand / trop complexe.\"",
+      question: "On est trop grand / trop complexe.",
       answer:
         "Hieraflow est conçu pour les structures multi-équipes, multi-sites et multi-rattachements. C'est précisément là qu'il apporte le plus de valeur.",
     },
@@ -81,12 +81,12 @@ const FAQSection = () => {
         "Hieraflow s'adapte à toutes les tailles. Des discriminants (département, service) facilitent la lisibilité de l'affichage, configurables directement par l'utilisateur.",
     },
     {
-      question: "\"On peut le faire nous-mêmes sur Excel / PowerPoint.\"",
+      question: "On peut le faire nous-mêmes sur Excel / PowerPoint.",
       answer:
         "Vous pouvez aussi faire votre comptabilité sur Excel. La question est : est-ce fiable, à jour, partagé et utilisable par tous ceux qui en ont besoin chaque jour ?",
     },
     {
-      question: "\"On manque déjà d'outils.\"",
+      question: "On manque déjà d'outils.",
       answer:
         "Hieraflow remplace des fichiers, PowerPoint, tableaux et intranet bricolés. Il simplifie votre écosystème, il ne rajoute pas une couche.",
     },
@@ -96,17 +96,17 @@ const FAQSection = () => {
         "Une entreprise de 200 personnes qui perd 10 min/jour par collaborateur perd environ 400 h/mois. Hieraflow coûte une fraction de ce gaspillage. Sans compter les mails envoyés à la mauvaise personne : perte business, image, crédibilité et délais rallongés.",
     },
     {
-      question: "\"Nos données sont sensibles.\"",
+      question: "Nos données sont sensibles.",
       answer:
         "Gestion fine des rôles, bases chiffrées et mécanismes d'authentification en mode SaaS. En mode on-premise, vous gardez la maîtrise totale de vos données.",
     },
     {
-      question: "\"On verra plus tard.\"",
+      question: "On verra plus tard.",
       answer:
         "Plus vous grandissez, plus la structure devient difficile à rattraper. Le bon moment, c'est avant que le flou ne coûte cher.",
     },
     {
-      question: "\"Ce n'est qu'un organigramme.\"",
+      question: "Ce n'est qu'un organigramme.",
       answer:
         "Un organigramme figé montre une photo. Hieraflow montre le système vivant de votre entreprise. Création d'un nouveau service en temps réel, changements d'affectation instantanés : repositionnement transparent et rapide.",
     },
