@@ -64,8 +64,8 @@ const ContactSection = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-hero relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10"></div>
+    <section className="py-20 bg-gradient-hero relative overflow-hidden" aria-labelledby="contact-section-title">
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10" aria-hidden="true"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">

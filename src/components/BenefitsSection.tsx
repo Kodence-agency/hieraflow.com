@@ -1,53 +1,59 @@
 import { Button } from "@/components/ui/button";
-import { 
-  Clock, 
-  Target, 
-  Eye, 
-  Award, 
-  Zap, 
+import {
+  Clock,
+  Target,
+  Eye,
+  Award,
+  Zap,
   Headphones,
-  CheckCircle2
+  ArrowRight,
 } from "lucide-react";
 
 const solutions = [
   {
     icon: Clock,
-    title: "Gain de temps",
-    description: "Simplifiez la gestion de vos équipes au quotidien grâce à une interface centralisée."
+    title: "Gain de temps et productivité",
+    description: "Simplifiez la gestion de vos équipes au quotidien grâce à une interface centralisée.",
   },
   {
     icon: Target,
     title: "Adaptabilité",
-    description: "S'adapte à votre organisation unique, quelle que soit sa taille ou son secteur."
+    description: "S'adapte à votre organisation unique, quelle que soit sa taille ou son secteur.",
   },
   {
     icon: Eye,
     title: "Transparence",
-    description: "Offrez une visibilité totale sur la structure et les compétences de vos équipes."
+    description: "Offrez une visibilité totale sur les rôles et les responsabilités de vos équipes.",
   },
   {
     icon: Award,
-    title: "Image professionnelle",
-    description: "Renforcez votre image avec un organigramme moderne et interactif."
+    title: "Image valorisée",
+    description: "Renforcez votre image avec un organigramme moderne et interactif.",
   },
   {
     icon: Zap,
     title: "Déploiement facile",
-    description: "Solution 100% cloud ou on-premise, opérationnelle en quelques heures."
+    description: "Solution 100% cloud ou on-premise, opérationnelle en quelques heures.",
   },
   {
     icon: Headphones,
-    title: "Support réactif",
-    description: "Un accompagnement dédié pour garantir votre succès à chaque étape."
-  }
+    title: "Support réactif assuré",
+    description: "Une équipe dédiée vous accompagne à chaque étape pour garantir votre réussite.",
+  },
 ];
 
 const BenefitsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-muted/30 to-background" aria-labelledby="benefits-title">
+    <section
+      className="py-20 bg-gradient-to-br from-muted/30 to-background"
+      aria-labelledby="benefits-title"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
-          <h2 id="benefits-title" className="text-4xl lg:text-5xl font-bold text-foreground">
+          <h2
+            id="benefits-title"
+            className="text-4xl lg:text-5xl font-bold text-foreground"
+          >
             Pourquoi choisir
             <span className="block bg-gradient-secondary bg-clip-text text-transparent">
               Hieraflow ?
@@ -57,16 +63,19 @@ const BenefitsSection = () => {
             Des équipes alignées, une organisation lisible, et des décisions prises plus vite : Hieraflow donne à chaque collaborateur la clarté dont il a besoin pour avancer.
           </p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
           {solutions.map((solution, index) => {
             const IconComponent = solution.icon;
             return (
-              <div 
-                key={index} 
+              <div
+                key={index}
                 className="flex items-start gap-4 p-6 rounded-xl bg-card/80 backdrop-blur-sm shadow-card hover:shadow-elegant transition-all duration-300 group hover:-translate-y-1"
               >
-                <div className="w-12 h-12 shrink-0 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
+                <div
+                  className="w-12 h-12 shrink-0 bg-gradient-primary rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform"
+                  aria-hidden="true"
+                >
                   <IconComponent className="w-6 h-6 text-primary-foreground" />
                 </div>
                 <div>
@@ -83,11 +92,12 @@ const BenefitsSection = () => {
         </div>
 
         <div className="text-center">
-          <a href="#contact">
-            <Button variant="corporate" size="lg" className="text-lg px-10 py-6">
+          <Button variant="corporate" size="lg" className="text-lg px-10 py-6 group" asChild>
+            <a href="#contact">
               Demander une démo
-            </Button>
-          </a>
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            </a>
+          </Button>
         </div>
       </div>
     </section>
