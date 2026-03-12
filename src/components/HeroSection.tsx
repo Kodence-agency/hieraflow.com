@@ -8,12 +8,12 @@ import heroCarousel5 from "@/assets/hero-carousel-5.png";
 import heroCarousel6 from "@/assets/hero-carousel-6.png";
 
 const heroSlides = [
-  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne" },
-  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées" },
-  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise" },
-  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats" },
-  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs" },
-  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran" },
+  { src: heroCarousel1, alt: "Équipe collaborant dans un bureau moderne", title: "Collaboration en temps réel" },
+  { src: heroCarousel2, alt: "Collaboration d'équipe et technologies avancées", title: "Technologies avancées" },
+  { src: heroCarousel3, alt: "Professionnels connectés dans un réseau d'entreprise", title: "Réseau d'entreprise" },
+  { src: heroCarousel4, alt: "Équipe analysant des données et présentant des résultats", title: "Analyse & reporting" },
+  { src: heroCarousel5, alt: "Réunion stratégique entre collaborateurs", title: "Stratégie collective" },
+  { src: heroCarousel6, alt: "Interface d'organigramme Hieraflow sur écran", title: "Interface intuitive" },
 ];
 
 const HeroSection = () => {
