@@ -100,6 +100,12 @@ const Header = () => {
               Qui sommes-nous ?
             </Link>
             <Link
+              to="/#faq"
+              className="block text-foreground hover:text-primary transition-colors"
+            >
+              FAQ
+            </Link>
+            <Link
               to="/#contact"
               className="block text-foreground hover:text-primary transition-colors"
             >
