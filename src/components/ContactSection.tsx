@@ -64,8 +64,8 @@ const ContactSection = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-hero relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10"></div>
+    <section className="py-20 bg-gradient-hero relative overflow-hidden" aria-labelledby="contact-section-title">
+      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10" aria-hidden="true"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
@@ -87,49 +87,68 @@ const ContactSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <form className="space-y-4" onSubmit={onSubmit}>
+              <form className="space-y-4" onSubmit={onSubmit} aria-label="Formulaire de demande de démonstration">
                 <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="firstName" className="sr-only">Prénom</label>
+                    <Input
+                      id="firstName"
+                      placeholder="Votre prénom"
+                      required
+                      autoComplete="given-name"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                      value={form.firstName}
+                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="sr-only">Nom</label>
+                    <Input
+                      id="lastName"
+                      placeholder="Votre nom"
+                      required
+                      autoComplete="family-name"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                      value={form.lastName}
+                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="email" className="sr-only">Email professionnel</label>
                   <Input
-                    placeholder="Votre prénom"
+                    id="email"
+                    type="email"
+                    placeholder="Votre email professionnel"
+                    required
+                    autoComplete="email"
                     className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.firstName}
-                    onChange={(e) =>
-                      setForm({ ...form, firstName: e.target.value })
-                    }
-                  />
-                  <Input
-                    placeholder="Votre nom"
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.lastName}
-                    onChange={(e) =>
-                      setForm({ ...form, lastName: e.target.value })
-                    }
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
                   />
                 </div>
-                <Input
-                  type="email"
-                  placeholder="Votre email professionnel"
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                />
-                <Input
-                  placeholder="Votre entreprise"
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                  value={form.company}
-                  onChange={(e) =>
-                    setForm({ ...form, company: e.target.value })
-                  }
-                />
-                <Textarea
-                  placeholder="Parlez-nous de vos besoins..."
-                  rows={4}
-                  className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                  value={form.message}
-                  onChange={(e) =>
-                    setForm({ ...form, message: e.target.value })
-                  }
-                />
+                <div>
+                  <label htmlFor="company" className="sr-only">Entreprise</label>
+                  <Input
+                    id="company"
+                    placeholder="Votre entreprise"
+                    autoComplete="organization"
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                    value={form.company}
+                    onChange={(e) => setForm({ ...form, company: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="sr-only">Message</label>
+                  <Textarea
+                    id="message"
+                    placeholder="Parlez-nous de vos besoins..."
+                    rows={4}
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                    value={form.message}
+                    onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  />
+                </div>
                 <Button
                   variant="corporate"
                   size="lg"

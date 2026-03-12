@@ -252,12 +252,10 @@ const DiscoverSection = () => {
         <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-10 lg:p-14 shadow-card border border-border/50 text-center max-w-3xl mx-auto">
           <Building2 className="w-14 h-14 text-primary mx-auto mb-6" />
           <h3 className="text-3xl font-bold text-foreground mb-4">
-            Solution adaptée
+            Hieraflow s'adapte à votre organisation
           </h3>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-            Que vous soyez une PME de 10 employés ou une grande
-            entreprise de 10 000 collaborateurs, Hieraflow s'adapte à
-            votre structure organisationnelle.
+            Que vous soyez une PME de 10 employés ou une grande entreprise de 10 000 collaborateurs, Hieraflow s'ajuste à votre structure pour répondre précisément à vos enjeux.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
             <span className="px-5 py-2.5 rounded-full bg-primary/10 text-primary font-medium text-sm">PME</span>
