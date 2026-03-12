@@ -151,6 +151,7 @@ const ContactSection = () => {
                     value={form.employeeCount}
                     onChange={(e) => setForm({ ...form, employeeCount: e.target.value })}
                   />
+                </div>
                 <div>
                   <label htmlFor="message" className="sr-only">Message</label>
                   <Textarea
