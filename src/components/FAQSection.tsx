@@ -106,7 +106,7 @@ const FAQSection = () => {
         "Plus vous grandissez, plus la structure devient difficile à rattraper. Le bon moment, c'est avant que le flou ne coûte cher.",
     },
     {
-      question: "\"Ce n'est qu'un organigramme.\"",
+      question: "Ce n'est qu'un organigramme.",
       answer:
         "Un organigramme figé montre une photo. Hieraflow montre le système vivant de votre entreprise. Création d'un nouveau service en temps réel, changements d'affectation instantanés : repositionnement transparent et rapide.",
     },
