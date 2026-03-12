@@ -41,7 +41,7 @@ const FAQSection = () => {
       ),
     },
     {
-      question: "\"On a déjà un organigramme.\"",
+      question: "On a déjà un organigramme.",
       answer:
         "Est-il à jour en temps réel ou mis à jour après chaque mouvement ? La vraie question n'est pas d'avoir un organigramme, c'est d'avoir une structure fiable, utilisable par vos équipes au quotidien.",
     },
