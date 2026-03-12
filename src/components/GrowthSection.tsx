@@ -53,14 +53,14 @@ const GrowthSection = () => {
         <div className="max-w-4xl mx-auto text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-4 py-2 text-primary mb-6">
             <TrendingUp className="w-4 h-4" />
-            <span className="text-sm font-medium">Accompagner votre croissance</span>
+            <span className="text-sm font-medium">Les défis du quotidien</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Soutenir la croissance de
-            <span className="block text-primary">votre organisation</span>
+            Quand la complexité freine
+            <span className="block text-primary">votre performance</span>
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Quand l'entreprise grandit, la complexité augmente. Sans clarté organisationnelle, la performance ralentit. Hieraflow donne à chacun la visibilité nécessaire pour avancer vite et bien.
+            À mesure que votre organisation évolue, les repères se perdent. Identifier le bon interlocuteur, comprendre les périmètres, intégrer de nouveaux talents… autant de défis que Hieraflow résout.
           </p>
         </div>
 
