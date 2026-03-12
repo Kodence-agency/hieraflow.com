@@ -121,7 +121,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 py-32 relative z-20">
         <div className="max-w-3xl mx-auto lg:mx-0">
           {/* Text backdrop for readability */}
-          <div className="bg-black/25 backdrop-blur-[2px] rounded-3xl p-8 lg:p-12 space-y-8">
+          <div className="bg-black/35 backdrop-blur-[3px] rounded-3xl p-8 lg:p-12 space-y-8">
             <div className="space-y-6">
               <div
                 className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 text-white shadow-lg"
@@ -151,19 +151,19 @@ const HeroSection = () => {
                   >
                     <h1
                       className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05]"
-                      style={{ textShadow: "0 0 10px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.3), 0 2px 12px rgba(0,0,0,0.5)" }}
+                      style={{ textShadow: "0 0 8px rgba(0,0,0,0.6), 0 2px 16px rgba(0,0,0,0.4), 0 0 20px rgba(255,255,255,0.15)" }}
                     >
                       <span className="block">{slide.headline}</span>
                       <span
                         className="block text-primary"
-                        style={{ textShadow: "0 0 10px rgba(38,103,255,0.8), 0 0 30px rgba(38,103,255,0.5), 0 0 60px rgba(38,103,255,0.3)" }}
+                        style={{ textShadow: "0 0 12px rgba(38,103,255,0.9), 0 0 30px rgba(38,103,255,0.5), 0 2px 8px rgba(0,0,0,0.5)" }}
                       >
                         {slide.highlight}
                       </span>
                     </h1>
                     <p
                       className="mt-4 text-lg sm:text-xl lg:text-2xl text-white/95 leading-relaxed max-w-xl"
-                      style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
+                      style={{ textShadow: "0 1px 6px rgba(0,0,0,0.6), 0 2px 12px rgba(0,0,0,0.3)" }}
                     >
                       {slide.subtitle}
                     </p>
