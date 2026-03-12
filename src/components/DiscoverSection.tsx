@@ -177,16 +177,14 @@ const DiscoverSection = () => {
           </div>
 
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            La solution complète pour
+            Le système nerveux de
             <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              structurer votre organisation
+              votre organisation
             </span>
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Hieraflow transforme la gestion de vos organigrammes en une
-            expérience fluide et intuitive, pensée pour les PME, grandes
-            entreprises et administrations publiques.
+            Hieraflow rend visible et accessible les compétences, les rôles, et comment vos équipes sont reliées, pour que chacun sache en temps réel qui contacter et que les managers atteignent leurs objectifs avec clarté et simplicité avec une expérience fluide et intuitive.
           </p>
         </div>
 
