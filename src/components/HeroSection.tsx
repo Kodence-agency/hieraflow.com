@@ -119,9 +119,9 @@ const HeroSection = () => {
 
       {/* Content overlay — text panel with backdrop for readability */}
       <div className="container mx-auto px-4 py-32 relative z-20">
-        <div className="max-w-3xl mx-auto lg:mx-0">
+        <div className="max-w-4xl mx-auto lg:mx-0">
           {/* Text backdrop for readability */}
-          <div className="bg-black/35 backdrop-blur-[3px] rounded-3xl p-8 lg:p-12 space-y-8">
+          <div className="bg-gradient-to-r from-blue-500/50 to-green-400/40 rounded-3xl p-10 lg:p-16 space-y-8">
             <div className="space-y-6">
               <div
                 className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5 text-white shadow-lg"
