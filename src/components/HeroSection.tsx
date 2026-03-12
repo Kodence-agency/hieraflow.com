@@ -63,7 +63,7 @@ const HeroSection = () => {
     setDirection(index > currentIndex ? "next" : "prev");
     setIsAnimating(true);
     setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 800);
+    setTimeout(() => setIsAnimating(false), 1500);
   };
 
   useEffect(() => {
@@ -71,8 +71,8 @@ const HeroSection = () => {
       setDirection("next");
       setIsAnimating(true);
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length);
-      setTimeout(() => setIsAnimating(false), 800);
-    }, 5000);
+      setTimeout(() => setIsAnimating(false), 1500);
+    }, 7000);
     return () => {
       if (timeoutRef.current) clearInterval(timeoutRef.current);
     };
@@ -95,7 +95,7 @@ const HeroSection = () => {
         {heroSlides.map((slide, index) => (
           <div
             key={index}
-            className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            className="absolute inset-0 transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{
               transform:
                 index === currentIndex
@@ -139,7 +139,7 @@ const HeroSection = () => {
                 {heroSlides.map((slide, index) => (
                   <div
                     key={index}
-                    className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                    className="absolute inset-0 transition-transform duration-[1500ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
                     style={{
                       transform:
                         index === currentIndex
