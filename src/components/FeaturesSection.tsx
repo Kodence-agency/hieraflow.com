@@ -41,6 +41,12 @@ const audiences = [
 ];
 
 const FeaturesSection = () => {
+  const [openAudience, setOpenAudience] = useState<number | null>(null);
+
+  const toggleAudience = (index: number) => {
+    setOpenAudience(openAudience === index ? null : index);
+  };
+
   return (
     <section
       id="main-content"
