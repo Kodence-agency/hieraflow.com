@@ -37,7 +37,7 @@ const HeroSection = () => {
   return (
     <section
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #0a1628 0%, #1a3a5c 30%, #2667ff 60%, #34d399 100%)" }}
+      style={{ background: "linear-gradient(135deg, #0a1628 0%, #0d1f4a 30%, #021b74 60%, #34d399 100%)" }}
       role="banner"
     >
       <a
@@ -98,7 +98,7 @@ const HeroSection = () => {
               <a
                 href="/#contact"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-12 px-8 bg-gradient-to-r from-blue-400/90 to-green-400/90 text-white hover:from-blue-400 hover:to-green-400 shadow-lg backdrop-blur-sm"
+                className="inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 h-12 px-8 bg-gradient-to-r from-primary/90 to-secondary/90 text-white hover:from-primary hover:to-secondary shadow-lg backdrop-blur-sm"
                 aria-label="Accéder à la démonstration de Hieraflow"
               >
                 Demander une démo
