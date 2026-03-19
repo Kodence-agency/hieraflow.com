@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sparkles,
@@ -7,6 +8,7 @@ import {
   Users,
   Landmark,
   ArrowRight,
+  ChevronDown,
 } from "lucide-react";
 
 const interfacePoints = [
@@ -18,12 +20,33 @@ const interfacePoints = [
 ];
 
 const audiences = [
-  { icon: Building2, label: "PME", description: "Dès 10 employés" },
-  { icon: Users, label: "Grandes entreprises", description: "Jusqu'à 10 000+" },
-  { icon: Landmark, label: "Administrations", description: "Collectivités et services publics" },
+  {
+    icon: Building2,
+    label: "PME",
+    description: "Dès 10 employés",
+    detail: "Hieraflow offre aux PME une solution simple et rapide à déployer pour structurer leur organisation dès les premières phases de croissance. Organigramme clair, gestion des rôles et onboarding facilité — sans complexité inutile.",
+  },
+  {
+    icon: Users,
+    label: "Grandes entreprises",
+    description: "Jusqu'à 10 000+",
+    detail: "Pour les grandes structures, Hieraflow gère la complexité multi-sites, multi-entités et multi-niveaux hiérarchiques. Synchronisation RH, droits d'accès granulaires et reporting avancé pour piloter l'organisation à grande échelle.",
+  },
+  {
+    icon: Landmark,
+    label: "Administrations",
+    description: "Collectivités et services publics",
+    detail: "Hieraflow répond aux exigences spécifiques du secteur public : hébergement souverain, conformité RGPD, gestion des organigrammes complexes et accompagnement dédié pour les collectivités et administrations.",
+  },
 ];
 
 const FeaturesSection = () => {
+  const [openAudience, setOpenAudience] = useState<number | null>(null);
+
+  const toggleAudience = (index: number) => {
+    setOpenAudience(openAudience === index ? null : index);
+  };
+
   return (
     <section
       id="main-content"
@@ -79,17 +102,37 @@ const FeaturesSection = () => {
             <p className="text-muted-foreground mb-8">
               Quelle que soit votre taille ou votre secteur, Hieraflow s'ajuste à votre structure pour répondre précisément à vos enjeux.
             </p>
-            <ul className="space-y-4 flex-1 mb-8" role="list" aria-label="Types d'organisations supportées">
+            <ul className="space-y-3 flex-1 mb-8" role="list" aria-label="Types d'organisations supportées">
               {audiences.map((item, index) => {
                 const IconComponent = item.icon;
+                const isOpen = openAudience === index;
                 return (
-                  <li key={index} className="flex items-center gap-4 p-3.5 rounded-xl bg-card/80 border border-border/30 group hover:shadow-card transition-all" role="listitem">
-                    <div className="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center" aria-hidden="true">
-                      <IconComponent className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <span className="text-foreground font-semibold block text-sm">{item.label}</span>
-                      <span className="text-muted-foreground text-xs">{item.description}</span>
+                  <li key={index} role="listitem">
+                    <button
+                      onClick={() => toggleAudience(index)}
+                      className={`w-full flex items-center gap-4 p-3.5 rounded-xl bg-card/80 border group transition-all cursor-pointer ${
+                        isOpen ? "border-primary/40 shadow-card" : "border-border/30 hover:shadow-card"
+                      }`}
+                      aria-expanded={isOpen}
+                    >
+                      <div className="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center" aria-hidden="true">
+                        <IconComponent className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="text-left flex-1">
+                        <span className="text-foreground font-semibold block text-sm">{item.label}</span>
+                        <span className="text-muted-foreground text-xs">{item.description}</span>
+                      </div>
+                      <ChevronDown
+                        className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-48 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"}`}>
+                      <div className="bg-card border border-border/40 rounded-xl px-5 py-4 shadow-card">
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
+                      </div>
                     </div>
                   </li>
                 );
