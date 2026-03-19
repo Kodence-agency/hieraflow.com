@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sparkles,
@@ -7,6 +8,7 @@ import {
   Users,
   Landmark,
   ArrowRight,
+  ChevronDown,
 } from "lucide-react";
 
 const interfacePoints = [
@@ -18,9 +20,24 @@ const interfacePoints = [
 ];
 
 const audiences = [
-  { icon: Building2, label: "PME", description: "Dès 10 employés" },
-  { icon: Users, label: "Grandes entreprises", description: "Jusqu'à 10 000+" },
-  { icon: Landmark, label: "Administrations", description: "Collectivités et services publics" },
+  {
+    icon: Building2,
+    label: "PME",
+    description: "Dès 10 employés",
+    detail: "Hieraflow offre aux PME une solution simple et rapide à déployer pour structurer leur organisation dès les premières phases de croissance. Organigramme clair, gestion des rôles et onboarding facilité — sans complexité inutile.",
+  },
+  {
+    icon: Users,
+    label: "Grandes entreprises",
+    description: "Jusqu'à 10 000+",
+    detail: "Pour les grandes structures, Hieraflow gère la complexité multi-sites, multi-entités et multi-niveaux hiérarchiques. Synchronisation RH, droits d'accès granulaires et reporting avancé pour piloter l'organisation à grande échelle.",
+  },
+  {
+    icon: Landmark,
+    label: "Administrations",
+    description: "Collectivités et services publics",
+    detail: "Hieraflow répond aux exigences spécifiques du secteur public : hébergement souverain, conformité RGPD, gestion des organigrammes complexes et accompagnement dédié pour les collectivités et administrations.",
+  },
 ];
 
 const FeaturesSection = () => {
