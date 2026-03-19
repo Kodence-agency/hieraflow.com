@@ -50,6 +50,11 @@ const solutions = [
     text: "Des données organisationnelles fiables pour piloter la croissance",
     detail: "Obtenez des indicateurs précis sur la répartition de vos effectifs, les ratios d'encadrement et l'évolution de votre structure pour prendre des décisions éclairées.",
   },
+  {
+    icon: Shield,
+    text: "Une sécurité renforcée et une conformité garantie",
+    detail: "Hieraflow garantit la confidentialité de vos données organisationnelles avec un hébergement sécurisé, des accès contrôlés par rôle et une conformité RGPD native.",
+  },
 ];
 
 const GrowthSection = () => {
