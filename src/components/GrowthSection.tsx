@@ -114,48 +114,81 @@ const GrowthSection = () => {
             Hieraflow apporte une solution concrète à chacun de ces problèmes, en un seul outil.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mt-10">
-            {solutions.map((solution, index) => {
-              const IconComponent = solution.icon;
-              const isOpen = openIndex === index;
-              return (
-                <div key={index} className="relative">
-                  <button
-                    onClick={() => toggleSolution(index)}
-                    className={`group flex items-center gap-3 bg-card border rounded-full px-6 py-4 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 cursor-pointer ${
-                      isOpen ? "border-primary/50 shadow-elegant" : "border-border/60 hover:border-primary/30"
-                    }`}
-                    aria-expanded={isOpen}
-                  >
-                    <div className="w-10 h-10 shrink-0 bg-gradient-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
-                      <IconComponent className="w-5 h-5 text-primary-foreground" />
-                    </div>
-                    <span className="text-sm font-medium text-foreground leading-snug text-left">
-                      {solution.text}
-                    </span>
-                    <ChevronDown
-                      className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
+          <div className="grid md:grid-cols-2 gap-4 mt-10">
+            {/* Left column */}
+            <div className="flex flex-col gap-4">
+              {solutions.slice(0, 3).map((solution, index) => {
+                const IconComponent = solution.icon;
+                const isOpen = openIndex === index;
+                return (
+                  <div key={index}>
+                    <button
+                      onClick={() => toggleSolution(index)}
+                      className={`w-full group flex items-center gap-3 bg-card border rounded-full px-6 py-4 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 cursor-pointer ${
+                        isOpen ? "border-primary/50 shadow-elegant" : "border-border/60 hover:border-primary/30"
                       }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-
-                  {/* Dropdown detail */}
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen ? "max-h-48 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"
-                    }`}
-                  >
-                    <div className="bg-card border border-border/60 rounded-xl px-5 py-4 shadow-card text-left">
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {solution.detail}
-                      </p>
+                      aria-expanded={isOpen}
+                    >
+                      <div className="w-10 h-10 shrink-0 bg-gradient-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
+                        <IconComponent className="w-5 h-5 text-primary-foreground" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground leading-snug text-left flex-1">
+                        {solution.text}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-48 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"}`}>
+                      <div className="bg-card border border-border/60 rounded-xl px-5 py-4 shadow-card text-left">
+                        <p className="text-sm text-muted-foreground leading-relaxed">{solution.detail}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+
+            {/* Right column */}
+            <div className="flex flex-col gap-4">
+              {solutions.slice(3).map((solution, sliceIndex) => {
+                const index = sliceIndex + 3;
+                const IconComponent = solution.icon;
+                const isOpen = openIndex === index;
+                return (
+                  <div key={index}>
+                    <button
+                      onClick={() => toggleSolution(index)}
+                      className={`w-full group flex items-center gap-3 bg-card border rounded-full px-6 py-4 shadow-card hover:shadow-elegant hover:-translate-y-1 transition-all duration-300 cursor-pointer ${
+                        isOpen ? "border-primary/50 shadow-elegant" : "border-border/60 hover:border-primary/30"
+                      }`}
+                      aria-expanded={isOpen}
+                    >
+                      <div className="w-10 h-10 shrink-0 bg-gradient-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform" aria-hidden="true">
+                        <IconComponent className="w-5 h-5 text-primary-foreground" />
+                      </div>
+                      <span className="text-sm font-medium text-foreground leading-snug text-left flex-1">
+                        {solution.text}
+                      </span>
+                      <ChevronDown
+                        className={`w-4 h-4 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        aria-hidden="true"
+                      />
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-48 opacity-100 mt-2" : "max-h-0 opacity-0 mt-0"}`}>
+                      <div className="bg-card border border-border/60 rounded-xl px-5 py-4 shadow-card text-left">
+                        <p className="text-sm text-muted-foreground leading-relaxed">{solution.detail}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
