@@ -22,7 +22,8 @@ const contactSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   email: z.string().email(),
-  company: z.string().min(1).max(150),
+  company: z.string().max(150).optional().default(""),
+  employeeCount: z.string().max(20).optional().default(""),
   message: z.string().min(5).max(2000),
   _honey: z.string().optional(),
 });
@@ -73,14 +74,11 @@ const server = http.createServer(async (req, res) => {
           const subject = `Nouvelle demande de démo - ${parsed.firstName} ${parsed.lastName}`;
           const html = `
             <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Demande de démonstration</h2>
-            <p><strong>Nom:</strong> ${escapeHtml(
-              parsed.firstName
-            )} ${escapeHtml(parsed.lastName)}</p>
+            <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
             <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
-            <p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>
-            <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(
-              parsed.message
-            ).replace(/\n/g, "<br/>")}</p>
+            ${parsed.company ? `<p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>` : ""}
+            ${parsed.employeeCount ? `<p><strong>Effectif:</strong> ${escapeHtml(parsed.employeeCount)} employés</p>` : ""}
+            <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(parsed.message).replace(/\n/g, "<br/>")}</p>
             <hr style="margin:16px 0; border:none; border-top:1px solid #eee;" />
             <small style="color:#777;">ID: ${correlationId}</small>
           `;

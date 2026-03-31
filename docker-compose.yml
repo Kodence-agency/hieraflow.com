@@ -1,0 +1,26 @@
+services:
+
+  # ── Frontend: Nginx serving the built React app ──────────────────────────
+  landing:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "127.0.0.1:8080:80"   # Only accessible locally — Apache will reverse-proxy
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  # ── Backend: Contact-form API (bun + Resend) ─────────────────────────────
+  api:
+    build:
+      context: .
+      target: api
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+    restart: unless-stopped
+    # No port exposed to host — only reachable from the landing container
