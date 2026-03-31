@@ -6,7 +6,7 @@ FROM oven/bun:1-alpine AS build
 WORKDIR /app
 
 COPY package.json bun.lock* bun.lockb* ./
-RUN bun install --frozen-lockfile
+RUN bun install
 
 COPY . .
 RUN bun run build
@@ -29,7 +29,7 @@ FROM oven/bun:1-alpine AS api
 WORKDIR /app
 
 COPY package.json bun.lock* bun.lockb* ./
-RUN bun install --frozen-lockfile
+RUN bun install
 
 COPY server/ ./server/
 COPY tsconfig*.json ./
