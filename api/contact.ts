@@ -52,12 +52,12 @@ export default async function handler(req: any, res: any) {
     const html = `
       <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Demande de démonstration</h2>
       <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(
-      parsed.lastName
-    )}</p>
+        parsed.lastName,
+      )}</p>
       <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
       <p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>
       <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(
-        parsed.message
+        parsed.message,
       ).replace(/\n/g, "<br/>")}</p>
     `;
 
