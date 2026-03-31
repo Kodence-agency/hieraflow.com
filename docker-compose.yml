@@ -1,10 +1,8 @@
 services:
 
-  # ── Frontend: Nginx serving the built React app ──────────────────────────
+  # ── Frontend: Nginx serving the built React app (image pré-buildée sur GHCR) ─
   landing:
-    build:
-      context: .
-      target: frontend
+    image: ghcr.io/heavenflowgroup/hieraflow-landing-page:${IMAGE_TAG:-latest}
     ports:
       - "127.0.0.1:8080:80"   # Only accessible locally — Apache will reverse-proxy
     volumes:
@@ -13,7 +11,7 @@ services:
       - api
     restart: unless-stopped
 
-  # ── Backend: Contact-form API (bun + Resend) ─────────────────────────────
+  # ── Backend: Contact-form API (bun + Resend) ─────────────────────────────────
   api:
     build:
       context: .

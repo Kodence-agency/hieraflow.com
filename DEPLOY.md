@@ -6,24 +6,40 @@ Déploiement complet sur VPS Ubuntu avec Docker, Apache reverse proxy, et SSL Le
 - Docker + Docker Compose installés
 - Apache2 actif (ports 80 et 443)
 - Certbot installé (`certbot --version`)
-- Git installé
 
 ---
 
 ## Architecture
 
 ```
+GitHub push → GitHub Actions (build + push GHCR)
+                      ↓
+             ghcr.io/heavenflowgroup/hieraflow-landing-page:latest
+                      ↓
 Internet → Apache (80/443) → http://127.0.0.1:8080 → Container nginx (landing)
                                                               ↓ /api/*
                                                        Container bun (api)
 ```
 
-- `landing` : Nginx sert le build React statique et proxifie `/api/` vers le service `api`.
-- `api` : Serveur Bun/Node.js qui gère `POST /api/contact` (envoi d'email via Resend).
+- `landing` : image pré-buildée sur GHCR, Nginx sert le build React et proxifie `/api/`.
+- `api` : buildé localement sur le VPS, gère `POST /api/contact` via Resend.
 
 ---
 
-## Section 2.1 — Transfert et lancement
+## Section 0 — Pipeline CI/CD (automatique)
+
+À chaque push sur `main`, GitHub Actions :
+1. Build le target `frontend` du Dockerfile.
+2. Pousse l'image sur `ghcr.io/heavenflowgroup/hieraflow-landing-page` avec deux tags :
+   - `latest`
+   - SHA court du commit (ex : `a3f7c1b`)
+
+Aucune action manuelle n'est requise côté CI. Le pipeline est défini dans
+`.github/workflows/docker-publish.yml`.
+
+---
+
+## Section 1 — Installation initiale sur le VPS
 
 ### Étape 1 — Connexion SSH
 
@@ -38,16 +54,8 @@ Remplacer `<VPS_USER>` (ex : `ubuntu`, `root`) et `<VPS_IP>` par l'IP publique d
 ### Étape 2 — Cloner le projet
 
 ```bash
-git clone https://github.com/<ORG>/hieraflow-landing-page.git /opt/hieraflow
-cd /opt/hieraflow
-```
-
-Ou via `scp` depuis votre machine locale :
-
-```bash
-scp -r /chemin/local/hieraflow-landing-page <VPS_USER>@<VPS_IP>:/opt/hieraflow
-ssh <VPS_USER>@<VPS_IP>
-cd /opt/hieraflow
+git clone https://github.com/heavenflowgroup/hieraflow-landing-page.git /opt/hieraflow-landing-page
+cd /opt/hieraflow-landing-page
 ```
 
 ---
@@ -67,21 +75,81 @@ CONTACT_FROM=noreply@hieraflow.com
 CONTACT_TO=contact@hieraflow.com
 ```
 
-Sauvegarder et fermer (`Ctrl+O`, `Ctrl+X` sous nano).
+Sauvegarder et fermer (`Ctrl+O`, `Entrée`, `Ctrl+X` sous nano).
 
 ---
 
-### Étape 4 — Lancer les containers
+## Section 2 — Authentification GHCR sur le VPS
+
+> Nécessaire uniquement si le package GHCR est privé (voir Section 6).
+> Si le package est public, passer directement à la Section 3.
+
+### Étape 1 — Générer un Personal Access Token GitHub
+
+1. Aller sur GitHub : **Settings → Developer settings → Personal access tokens → Tokens (classic)**.
+2. Cliquer **Generate new token (classic)**.
+3. Nom : `hieraflow-vps-ghcr-read`
+4. Expiration : selon politique de sécurité (90 jours recommandé).
+5. Scope : cocher **uniquement** `read:packages`.
+6. Générer et copier le token (affiché une seule fois).
+
+---
+
+### Étape 2 — Se connecter au registre GHCR
 
 ```bash
-docker compose up -d --build
+echo "<PAT>" | docker login ghcr.io -u <GITHUB_USERNAME> --password-stdin
 ```
 
-Le build initial prend quelques minutes (installation des dépendances, compilation Vite).
+Remplacer `<PAT>` par le token généré et `<GITHUB_USERNAME>` par le nom d'utilisateur GitHub
+(ex : `christopher` ou le nom de service `heavenflowgroup`).
 
 ---
 
-### Étape 5 — Vérifier que les containers tournent
+### Étape 3 — Persister le PAT pour les reconnexions futures
+
+```bash
+echo 'export GHCR_PAT="<PAT>"' >> ~/.bashrc
+source ~/.bashrc
+echo $GHCR_PAT | docker login ghcr.io -u <GITHUB_USERNAME> --password-stdin
+```
+
+---
+
+### Étape 4 — Vérifier la persistance du login
+
+```bash
+cat ~/.docker/config.json | grep ghcr.io
+```
+
+Résultat attendu : une entrée `"ghcr.io"` avec `"auth"` dans le JSON.
+
+---
+
+## Section 3 — Premier lancement des containers
+
+### Étape 1 — Récupérer l'image depuis GHCR
+
+```bash
+docker compose pull landing
+```
+
+Cette commande télécharge `ghcr.io/heavenflowgroup/hieraflow-landing-page:latest`
+depuis GHCR. Le service `api` sera buildé localement à l'étape suivante.
+
+---
+
+### Étape 2 — Démarrer les containers
+
+```bash
+docker compose up -d
+```
+
+Docker utilisera l'image GHCR pour `landing` et buildera `api` depuis les sources locales.
+
+---
+
+### Étape 3 — Vérifier que les containers tournent
 
 ```bash
 docker compose ps
@@ -99,9 +167,10 @@ Résultat attendu : `HTTP/1.1 200 OK`.
 
 ---
 
-## Section 2.2 — Configuration Apache comme reverse proxy
+## Section 4 — Configuration Apache comme reverse proxy
 
-Apache occupe déjà les ports 80 et 443. La stratégie retenue : Apache reçoit les requêtes HTTPS et les proxifie vers le container Docker sur `127.0.0.1:8080`. Docker n'expose rien sur 80/443.
+Apache occupe déjà les ports 80 et 443. La stratégie retenue : Apache reçoit les requêtes
+HTTPS et les proxifie vers le container Docker sur `127.0.0.1:8080`.
 
 ### Étape 1 — Activer les modules Apache
 
@@ -125,7 +194,6 @@ Coller le contenu suivant :
     ServerName hieraflow.com
     ServerAlias www.hieraflow.com
 
-    # Redirection permanente vers HTTPS
     RewriteEngine On
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}$1 [R=301,L]
@@ -136,30 +204,26 @@ Coller le contenu suivant :
 
 ### Étape 3 — Créer le VirtualHost HTTPS
 
-Dans le **même fichier** `/etc/apache2/sites-available/hieraflow.conf`, ajouter à la suite :
+Dans le **même fichier**, ajouter à la suite :
 
 ```apache
 <VirtualHost *:443>
     ServerName hieraflow.com
     ServerAlias www.hieraflow.com
 
-    # Certificat SSL Let's Encrypt
     SSLEngine On
     SSLCertificateFile    /etc/letsencrypt/live/hieraflow.com/fullchain.pem
     SSLCertificateKeyFile /etc/letsencrypt/live/hieraflow.com/privkey.pem
 
-    # Reverse proxy vers le container Docker
     ProxyPreserveHost On
     ProxyPass        / http://127.0.0.1:8080/
     ProxyPassReverse / http://127.0.0.1:8080/
 
-    # Headers de sécurité
     Header always set X-Frame-Options "SAMEORIGIN"
     Header always set X-Content-Type-Options "nosniff"
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 
-    # Logs
     ErrorLog  ${APACHE_LOG_DIR}/hieraflow-error.log
     CustomLog ${APACHE_LOG_DIR}/hieraflow-access.log combined
 </VirtualHost>
@@ -182,23 +246,23 @@ Si `configtest` affiche `Syntax OK` :
 sudo systemctl reload apache2
 ```
 
-> **Note :** Si `configtest` échoue avec une erreur sur les certificats SSL, c'est normal si Certbot n'a pas encore été exécuté. Commenter temporairement le bloc `<VirtualHost *:443>`, activer le site HTTP seul, puis obtenir le certificat (Section 3), puis décommenter et recharger.
+> **Note :** Si `configtest` échoue sur les certificats SSL, commenter temporairement le bloc
+> `<VirtualHost *:443>`, activer le HTTP seul, obtenir le certificat (Section 5),
+> puis décommenter et recharger.
 
 ---
 
-## Section 3 — Certificat SSL avec Certbot
+## Section 5 — Certificat SSL avec Certbot
 
-> **Prérequis :** Les enregistrements DNS `hieraflow.com` et `www.hieraflow.com` doivent déjà pointer vers l'IP du VPS avant cette étape (voir Section 4).
+> **Prérequis :** Les enregistrements DNS doivent déjà pointer vers le VPS (Section 6).
 
 ### Étape 1 — Obtenir le certificat
-
-Avec le plugin Apache (recommandé — modifie automatiquement la configuration Apache) :
 
 ```bash
 sudo certbot --apache -d hieraflow.com -d www.hieraflow.com
 ```
 
-Si le plugin Apache n'est pas disponible, utiliser le mode webroot :
+Si le plugin Apache n'est pas disponible :
 
 ```bash
 sudo certbot certonly --webroot \
@@ -206,8 +270,6 @@ sudo certbot certonly --webroot \
   -d hieraflow.com \
   -d www.hieraflow.com
 ```
-
-Suivre les instructions interactives (adresse email, acceptation des CGU).
 
 ---
 
@@ -217,11 +279,7 @@ Suivre les instructions interactives (adresse email, acceptation des CGU).
 sudo ls -la /etc/letsencrypt/live/hieraflow.com/
 ```
 
-Les fichiers suivants doivent être présents :
-- `fullchain.pem`
-- `privkey.pem`
-- `cert.pem`
-- `chain.pem`
+Fichiers attendus : `fullchain.pem`, `privkey.pem`, `cert.pem`, `chain.pem`.
 
 ---
 
@@ -235,15 +293,13 @@ Résultat attendu : `Congratulations, all simulated renewals succeeded.`
 
 ---
 
-### Étape 4 — Vérifier le timer systemd de renouvellement
+### Étape 4 — Vérifier le timer systemd
 
 ```bash
 systemctl status certbot.timer
 ```
 
-Le timer doit être `active (waiting)`. Il déclenche le renouvellement automatique deux fois par jour.
-
-Si le timer est absent :
+Le timer doit être `active (waiting)`. Si absent :
 
 ```bash
 sudo systemctl enable --now certbot.timer
@@ -251,42 +307,40 @@ sudo systemctl enable --now certbot.timer
 
 ---
 
-### Étape 5 — Activer la configuration HTTPS complète
+## Section 6 — Visibilité du package GHCR
 
-Si vous avez commenté le bloc `<VirtualHost *:443>` à l'étape 2.2, le décommenter maintenant :
+Par défaut, les packages GHCR d'une organisation GitHub sont **privés**.
 
-```bash
-sudo nano /etc/apache2/sites-available/hieraflow.conf
-# Décommenter le bloc <VirtualHost *:443>
-sudo apache2ctl configtest && sudo systemctl reload apache2
-```
+**Option A — Rendre le package public (recommandé pour simplifier le déploiement) :**
+
+1. Aller sur GitHub : **Organisation heavenflowgroup → Packages → hieraflow-landing-page**.
+2. Cliquer **Package settings**.
+3. Dans "Danger Zone" → **Change visibility → Public**.
+
+Avec un package public, le VPS peut `docker pull` sans authentification.
+
+**Option B — Garder le package privé :**
+
+L'authentification PAT (Section 2) est obligatoire avant chaque `docker compose pull`.
+Le login Docker persiste dans `~/.docker/config.json` — pas besoin de se reconnecter
+à chaque mise à jour, seulement après expiration du token.
 
 ---
 
-## Section 4 — Configuration DNS
+## Section 7 — Configuration DNS
 
 ### Enregistrements à créer
 
-Dans l'interface DNS de votre registrar (OVH, Gandi, Namecheap, Cloudflare…) :
+| Type | Nom             | Valeur     | TTL  |
+|------|-----------------|------------|------|
+| A    | `hieraflow.com` | `<VPS_IP>` | 3600 |
+| A    | `www`           | `<VPS_IP>` | 3600 |
 
-| Type | Nom              | Valeur       | TTL  |
-|------|------------------|--------------|------|
-| A    | `hieraflow.com`  | `<VPS_IP>`   | 3600 |
-| A    | `www`            | `<VPS_IP>`   | 3600 |
-
-Remplacer `<VPS_IP>` par l'adresse IPv4 publique du VPS.
-
-> Alternative : créer un enregistrement `CNAME www → hieraflow.com` si le registrar le permet.
+> Alternative : `CNAME www → hieraflow.com`
 
 ---
 
-### Délai de propagation
-
-Entre **5 minutes** et **48 heures** selon le TTL configuré. Avec un TTL de 3600 (1 heure), compter généralement moins d'une heure.
-
----
-
-### Vérifier la propagation DNS
+### Vérifier la propagation
 
 ```bash
 dig hieraflow.com +short
@@ -295,35 +349,84 @@ dig www.hieraflow.com +short
 
 Les deux commandes doivent retourner `<VPS_IP>`.
 
-Vérification externe (depuis une autre machine ou via un service en ligne) :
-
-```bash
-nslookup hieraflow.com 8.8.8.8
-```
-
 ---
 
 ### Test final
 
-Ouvrir `https://hieraflow.com` dans un navigateur.
+Ouvrir `https://hieraflow.com` dans un navigateur et vérifier :
+- Cadenas SSL affiché.
+- Landing page affichée correctement.
+- Redirection `http://` → `https://` fonctionnelle.
+- Formulaire de contact opérationnel.
 
-Vérifier :
-- Le cadenas SSL est affiché (certificat valide).
-- La page de la landing page s'affiche correctement.
-- La redirection `http://hieraflow.com` → `https://hieraflow.com` fonctionne.
-- Le formulaire de contact envoie correctement (tester avec une vraie adresse).
+---
+
+## Procédure de mise à jour
+
+À exécuter après chaque déploiement CI (push sur `main`).
+
+### Étape 1 — Connexion SSH
+
+```bash
+ssh <VPS_USER>@<VPS_IP>
+```
+
+---
+
+### Étape 2 — Se placer dans le répertoire du projet
+
+```bash
+cd /opt/hieraflow-landing-page
+```
+
+---
+
+### Étape 3 — Récupérer la dernière image depuis GHCR
+
+```bash
+docker compose pull
+```
+
+Télécharge `ghcr.io/heavenflowgroup/hieraflow-landing-page:latest` depuis GHCR.
+
+---
+
+### Étape 4 — Redémarrer les services
+
+```bash
+docker compose up -d
+```
+
+Docker remplace le container `landing` par la nouvelle image.
+Le service `api` n'est redémarré que si son image locale a changé.
+
+---
+
+### Étape 5 — Vérifier la mise à jour
+
+```bash
+docker compose ps
+```
+
+```bash
+docker inspect $(docker compose ps -q landing) | grep '"Image"' | head -1
+```
+
+Affiche le SHA de l'image active — doit correspondre au dernier commit sur `main`.
+
+---
+
+### Étape 6 — Nettoyer les anciennes images
+
+```bash
+docker image prune -f
+```
+
+Supprime les images non utilisées pour libérer de l'espace disque.
 
 ---
 
 ## Opérations courantes
-
-### Mettre à jour le site après un push git
-
-```bash
-cd /opt/hieraflow
-git pull
-docker compose up -d --build
-```
 
 ### Consulter les logs
 
@@ -336,6 +439,12 @@ docker compose logs -f api
 
 # Logs Apache
 sudo tail -f /var/log/apache2/hieraflow-error.log
+```
+
+### Déployer un tag spécifique (ex : SHA de commit)
+
+```bash
+IMAGE_TAG=a3f7c1b docker compose up -d
 ```
 
 ### Redémarrer un service
@@ -355,8 +464,9 @@ docker compose down
 
 ## Placeholders à remplacer
 
-| Placeholder   | Description                          |
-|---------------|--------------------------------------|
-| `<VPS_IP>`    | Adresse IPv4 publique du VPS         |
-| `<VPS_USER>`  | Utilisateur SSH (ex : `ubuntu`, `root`) |
-| `<ORG>`       | Organisation GitHub (si clone via git) |
+| Placeholder        | Description                                        |
+|--------------------|----------------------------------------------------|
+| `<VPS_IP>`         | Adresse IPv4 publique du VPS                       |
+| `<VPS_USER>`       | Utilisateur SSH (ex : `ubuntu`, `root`)            |
+| `<PAT>`            | Personal Access Token GitHub (scope `read:packages`) |
+| `<GITHUB_USERNAME>`| Nom d'utilisateur ou d'organisation GitHub         |
