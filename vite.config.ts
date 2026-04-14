@@ -7,7 +7,7 @@ export default defineConfig(() => ({
   server: {
     host: "::",
     port: 8080,
-    allowedHosts: true,
+    allowedHosts: true as const,
     proxy: {
       "/api": {
         target: "http://localhost:3001",

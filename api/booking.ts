@@ -3,15 +3,14 @@ import { z } from "zod";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const contactSchema = z.object({
+const bookingSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   email: z.string().email(),
   phone: z.string().max(20).optional().default(""),
   company: z.string().max(150).optional().default(""),
-  employeeCount: z.string().max(20).optional().default(""),
-  message: z.string().min(5).max(2000),
-  _honey: z.string().optional(),
+  date: z.string().min(1),
+  time: z.string().min(1),
 });
 
 function escapeHtml(str: string) {
@@ -23,7 +22,6 @@ function escapeHtml(str: string) {
     .replace(/'/g, "&#39;");
 }
 
-// Vercel serverless function (Node.js runtime)
 export default async function handler(req: any, res: any) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -39,26 +37,21 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const parsed = contactSchema.parse(body);
-
-    if (parsed._honey) {
-      // On fait semblant
-      return res.status(200).json({ status: "ok" });
-    }
+    const parsed = bookingSchema.parse(body);
 
     const to = process.env.CONTACT_TO || "contact@heavenit.org";
     const fromRaw = process.env.CONTACT_FROM || "contact@heavenit.org";
     const from = fromRaw.includes("<") ? fromRaw : `Hieraflow <${fromRaw}>`;
 
-    const subject = `Nouvelle demande de démo - ${parsed.firstName} ${parsed.lastName}`;
+    const subject = `Prise de RDV - ${parsed.firstName} ${parsed.lastName} - ${parsed.date} à ${parsed.time}`;
     const html = `
-      <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Demande de démonstration</h2>
+      <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Prise de rendez-vous</h2>
       <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
       <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
       ${parsed.phone ? `<p><strong>Téléphone:</strong> ${escapeHtml(parsed.phone)}</p>` : ""}
       ${parsed.company ? `<p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>` : ""}
-      ${parsed.employeeCount ? `<p><strong>Effectif:</strong> ${escapeHtml(parsed.employeeCount)} employés</p>` : ""}
-      <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(parsed.message).replace(/\n/g, "<br/>")}</p>
+      <p style="margin-top:12px;"><strong>Date:</strong> ${escapeHtml(parsed.date)}</p>
+      <p><strong>Créneau:</strong> ${escapeHtml(parsed.time)}</p>
     `;
 
     const { error } = await resend.emails.send({
@@ -70,7 +63,7 @@ export default async function handler(req: any, res: any) {
     });
 
     if (error) {
-      console.error("Resend error", error);
+      console.error("Resend booking error", error);
       return res.status(502).json({ error: "email_failed" });
     }
 

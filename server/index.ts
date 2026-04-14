@@ -22,10 +22,21 @@ const contactSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   email: z.string().email(),
+  phone: z.string().max(20).optional().default(""),
   company: z.string().max(150).optional().default(""),
   employeeCount: z.string().max(20).optional().default(""),
   message: z.string().min(5).max(2000),
   _honey: z.string().optional(),
+});
+
+const bookingSchema = z.object({
+  firstName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100),
+  email: z.string().email(),
+  phone: z.string().max(20).optional().default(""),
+  company: z.string().max(150).optional().default(""),
+  date: z.string().min(1),
+  time: z.string().min(1),
 });
 
 function json(res: http.ServerResponse, status: number, data: any) {
@@ -76,6 +87,7 @@ const server = http.createServer(async (req, res) => {
             <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Demande de démonstration</h2>
             <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
             <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
+            ${parsed.phone ? `<p><strong>Téléphone:</strong> ${escapeHtml(parsed.phone)}</p>` : ""}
             ${parsed.company ? `<p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>` : ""}
             ${parsed.employeeCount ? `<p><strong>Effectif:</strong> ${escapeHtml(parsed.employeeCount)} employés</p>` : ""}
             <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(parsed.message).replace(/\n/g, "<br/>")}</p>
@@ -126,6 +138,57 @@ const server = http.createServer(async (req, res) => {
       });
     } catch (outer) {
       console.error(`[${correlationId}] Outer exception`, outer);
+      return json(res, 500, { error: "internal", correlationId });
+    }
+  } else if (req.method === "POST" && req.url === "/api/booking") {
+    const correlationId = crypto.randomUUID();
+    try {
+      let raw = "";
+      req.on("data", (chunk) => (raw += chunk));
+      req.on("end", async () => {
+        try {
+          const parsedBody = JSON.parse(raw || "{}");
+          const parsed = bookingSchema.parse(parsedBody);
+
+          const to = process.env.CONTACT_TO!;
+          const from =
+            process.env.CONTACT_FROM?.includes("<") ||
+            process.env.CONTACT_FROM?.includes("@")
+              ? process.env.CONTACT_FROM!
+              : `Hieraflow <${process.env.CONTACT_FROM}>`;
+
+          const subject = `Prise de RDV - ${parsed.firstName} ${parsed.lastName} - ${parsed.date} à ${parsed.time}`;
+          const html = `
+            <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Prise de rendez-vous</h2>
+            <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
+            <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
+            ${parsed.phone ? `<p><strong>Téléphone:</strong> ${escapeHtml(parsed.phone)}</p>` : ""}
+            ${parsed.company ? `<p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>` : ""}
+            <p style="margin-top:12px;"><strong>Date:</strong> ${escapeHtml(parsed.date)}</p>
+            <p><strong>Créneau:</strong> ${escapeHtml(parsed.time)}</p>
+            <hr style="margin:16px 0; border:none; border-top:1px solid #eee;" />
+            <small style="color:#777;">ID: ${correlationId}</small>
+          `;
+
+          const sendResult = await resend.emails.send({ from, to, subject, html, replyTo: parsed.email });
+
+          if (sendResult.error) {
+            console.error(`[${correlationId}] Erreur Resend booking:`, sendResult.error);
+            return json(res, 502, { error: "email_failed", correlationId });
+          }
+
+          console.log(`[${correlationId}] Email booking envoyé`);
+          return json(res, 201, { status: "ok", correlationId });
+        } catch (e: any) {
+          if (e?.issues) {
+            return json(res, 400, { error: "validation_error", correlationId, details: e.issues });
+          }
+          console.error(`[${correlationId}] Exception booking`, e);
+          return json(res, 500, { error: "internal", correlationId });
+        }
+      });
+    } catch (outer) {
+      console.error(`[${correlationId}] Outer exception booking`, outer);
       return json(res, 500, { error: "internal", correlationId });
     }
   } else {
