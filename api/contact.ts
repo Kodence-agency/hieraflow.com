@@ -7,6 +7,7 @@ const contactSchema = z.object({
   firstName: z.string().min(1).max(100),
   lastName: z.string().min(1).max(100),
   email: z.string().email(),
+  phone: z.string().max(20).optional().default(""),
   company: z.string().max(150).optional().default(""),
   employeeCount: z.string().max(20).optional().default(""),
   message: z.string().min(5).max(2000),
