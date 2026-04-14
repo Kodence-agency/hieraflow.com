@@ -1,4 +1,4 @@
-import { Building2, Mail, MapPin, Clock } from "lucide-react";
+import { Building2, Mail, MapPin, Clock, Calendar } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -50,6 +50,12 @@ const Footer = () => {
               <div className="flex items-center space-x-3">
                 <Clock className="w-4 h-4 text-secondary" aria-hidden="true" />
                 <span>Lun - Ven : 9h - 18h</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Calendar className="w-4 h-4 text-accent" aria-hidden="true" />
+                <a href="/#contact" className="hover:text-accent transition-colors focus:text-accent focus:outline-none focus:ring-2 focus:ring-accent">
+                  Prendre rendez-vous
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-4 h-4 text-primary-glow" aria-hidden="true" />
