@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import BookingCalendar from "./BookingCalendar";
 
 const ContactSection = () => {
   const { toast } = useToast();
@@ -12,12 +13,15 @@ const ContactSection = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     company: "",
     employeeCount: "",
     message: "",
     _honey: "",
   });
   const [loading, setLoading] = useState(false);
+  const [showBooking, setShowBooking] = useState(false);
+  const [submittedData, setSubmittedData] = useState<typeof form | null>(null);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,10 +38,13 @@ const ContactSection = () => {
           title: "Demande envoyée",
           description: "Nous revenons vers vous sous 24h.",
         });
+        setSubmittedData({ ...form });
+        setShowBooking(true);
         setForm({
           firstName: "",
           lastName: "",
           email: "",
+          phone: "",
           company: "",
           employeeCount: "",
           message: "",
@@ -66,195 +73,222 @@ const ContactSection = () => {
   }
 
   return (
-    <section className="py-20 bg-gradient-hero relative overflow-hidden" aria-labelledby="contact-section-title">
-      <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10" aria-hidden="true"></div>
+    <>
+      <section className="py-20 bg-gradient-hero relative overflow-hidden" aria-labelledby="contact-section-title">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-black/10" aria-hidden="true"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white">
-            Prêt à transformer
-            <span className="block text-accent">votre organisation ?</span>
-          </h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour découvrir comment Hieraflow peut
-            révolutionner la gestion de vos équipes.
-          </p>
-        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white">
+              Prêt à transformer
+              <span className="block text-accent">votre organisation ?</span>
+            </h2>
+            <p className="text-xl text-white/90 max-w-2xl mx-auto">
+              Contactez-nous dès aujourd'hui pour découvrir comment Hieraflow peut
+              révolutionner la gestion de vos équipes.
+            </p>
+          </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
-            <CardHeader>
-              <CardTitle className="text-2xl text-center">
-                Demandez une démonstration
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <form className="space-y-4" onSubmit={onSubmit} aria-label="Formulaire de demande de démonstration">
-                <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white">
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">
+                  Demandez une démonstration
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <form className="space-y-4" onSubmit={onSubmit} aria-label="Formulaire de demande de démonstration">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="firstName" className="sr-only">Prénom</label>
+                      <Input
+                        id="firstName"
+                        placeholder="Votre prénom"
+                        required
+                        autoComplete="given-name"
+                        className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                        value={form.firstName}
+                        onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="lastName" className="sr-only">Nom</label>
+                      <Input
+                        id="lastName"
+                        placeholder="Votre nom"
+                        required
+                        autoComplete="family-name"
+                        className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                        value={form.lastName}
+                        onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      />
+                    </div>
+                  </div>
                   <div>
-                    <label htmlFor="firstName" className="sr-only">Prénom</label>
+                    <label htmlFor="email" className="sr-only">Email professionnel</label>
                     <Input
-                      id="firstName"
-                      placeholder="Votre prénom"
+                      id="email"
+                      type="email"
+                      placeholder="Votre email professionnel"
                       required
-                      autoComplete="given-name"
+                      autoComplete="email"
                       className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                      value={form.firstName}
-                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      value={form.email}
+                      onChange={(e) => setForm({ ...form, email: e.target.value })}
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="sr-only">Nom</label>
+                    <label htmlFor="phone" className="sr-only">Numéro de téléphone</label>
                     <Input
-                      id="lastName"
-                      placeholder="Votre nom"
-                      required
-                      autoComplete="family-name"
+                      id="phone"
+                      type="tel"
+                      placeholder="Votre numéro de téléphone"
+                      autoComplete="tel"
                       className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                      value={form.lastName}
-                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     />
                   </div>
-                </div>
-                <div>
-                  <label htmlFor="email" className="sr-only">Email professionnel</label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Votre email professionnel"
-                    required
-                    autoComplete="email"
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="company" className="sr-only">Entreprise</label>
-                  <Input
-                    id="company"
-                    placeholder="Votre entreprise"
-                    autoComplete="organization"
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.company}
-                    onChange={(e) => setForm({ ...form, company: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="employeeCount" className="sr-only">Nombre d'employés</label>
-                  <Input
-                    id="employeeCount"
-                    placeholder="Nombre d'employés"
-                    type="number"
-                    min="1"
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.employeeCount}
-                    onChange={(e) => setForm({ ...form, employeeCount: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="sr-only">Message</label>
-                  <Textarea
-                    id="message"
-                    placeholder="Parlez-nous de vos besoins..."
-                    rows={4}
-                    className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  />
-                </div>
-                <Button
-                  variant="corporate"
-                  size="lg"
-                  className="w-full group"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <span className="animate-spin">Envoi...</span>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
-                      Envoyer ma demande
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">
-                Contactez notre équipe
-              </h3>
-              <p className="text-white/80 text-lg">
-                Notre équipe d'experts est là pour répondre à toutes vos
-                questions et vous accompagner dans votre projet de
-                transformation organisationnelle.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                  <Mail className="w-6 h-6 text-accent" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Email</p>
-                  <a
-                    href="mailto:contact@hieraflow.com"
-                    className="text-accent hover:text-accent/80 transition-colors"
+                  <div>
+                    <label htmlFor="company" className="sr-only">Entreprise</label>
+                    <Input
+                      id="company"
+                      placeholder="Votre entreprise"
+                      autoComplete="organization"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                      value={form.company}
+                      onChange={(e) => setForm({ ...form, company: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="employeeCount" className="sr-only">Nombre d'employés</label>
+                    <Input
+                      id="employeeCount"
+                      placeholder="Nombre d'employés"
+                      type="number"
+                      min="1"
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                      value={form.employeeCount}
+                      onChange={(e) => setForm({ ...form, employeeCount: e.target.value })}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className="sr-only">Message</label>
+                    <Textarea
+                      id="message"
+                      placeholder="Parlez-nous de vos besoins..."
+                      rows={4}
+                      className="bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                    />
+                  </div>
+                  <Button
+                    variant="corporate"
+                    size="lg"
+                    className="w-full group"
+                    disabled={loading}
                   >
-                    contact@hieraflow.com
-                  </a>
+                    {loading ? (
+                      <span className="animate-spin">Envoi...</span>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
+                        Envoyer ma demande
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Contactez notre équipe
+                </h3>
+                <p className="text-white/80 text-lg">
+                  Notre équipe d'experts est là pour répondre à toutes vos
+                  questions et vous accompagner dans votre projet de
+                  transformation organisationnelle.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Email</p>
+                    <a
+                      href="mailto:contact@hieraflow.com"
+                      className="text-accent hover:text-accent/80 transition-colors"
+                    >
+                      contact@hieraflow.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-secondary" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">
+                      Support Téléphonique
+                    </p>
+                    <p className="text-white/80">
+                      Disponible du lundi au vendredi
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-primary-glow" />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Déploiement</p>
+                    <p className="text-white/80">
+                      France • Europe • International
+                    </p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-secondary" />
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                <h4 className="text-lg font-semibold text-white mb-3">
+                  Réponse Garantie
+                </h4>
+                <p className="text-white/80 mb-4">
+                  Nous nous engageons à vous répondre dans les 24h ouvrées.
+                </p>
+                <div className="flex items-center space-x-2 text-accent">
+                  <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium">
+                    Support réactif disponible
+                  </span>
                 </div>
-                <div>
-                  <p className="text-white font-semibold">
-                    Support Téléphonique
-                  </p>
-                  <p className="text-white/80">
-                    Disponible du lundi au vendredi
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-primary-glow" />
-                </div>
-                <div>
-                  <p className="text-white font-semibold">Déploiement</p>
-                  <p className="text-white/80">
-                    France • Europe • International
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <h4 className="text-lg font-semibold text-white mb-3">
-                Réponse Garantie
-              </h4>
-              <p className="text-white/80 mb-4">
-                Nous nous engageons à vous répondre dans les 24h ouvrées.
-              </p>
-              <div className="flex items-center space-x-2 text-accent">
-                <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-                <span className="text-sm font-medium">
-                  Support réactif disponible
-                </span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {showBooking && submittedData && (
+        <BookingCalendar
+          contactData={{
+            firstName: submittedData.firstName,
+            lastName: submittedData.lastName,
+            email: submittedData.email,
+            phone: submittedData.phone,
+            company: submittedData.company,
+          }}
+          onClose={() => setShowBooking(false)}
+        />
+      )}
+    </>
   );
 };
 
