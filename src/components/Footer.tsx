@@ -1,4 +1,4 @@
-import { Building2, Mail, MapPin, Clock } from "lucide-react";
+import { Building2, Mail, MapPin, Clock, Calendar } from "lucide-react";
 
 const Footer = () => {
   return (
