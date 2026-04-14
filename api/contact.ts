@@ -55,6 +55,7 @@ export default async function handler(req: any, res: any) {
       <h2 style="font-family: system-ui, Arial; margin-bottom:8px;">Demande de démonstration</h2>
       <p><strong>Nom:</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
       <p><strong>Email:</strong> ${escapeHtml(parsed.email)}</p>
+      ${parsed.phone ? `<p><strong>Téléphone:</strong> ${escapeHtml(parsed.phone)}</p>` : ""}
       ${parsed.company ? `<p><strong>Entreprise:</strong> ${escapeHtml(parsed.company)}</p>` : ""}
       ${parsed.employeeCount ? `<p><strong>Effectif:</strong> ${escapeHtml(parsed.employeeCount)} employés</p>` : ""}
       <p style="margin-top:12px;"><strong>Message:</strong><br/>${escapeHtml(parsed.message).replace(/\n/g, "<br/>")}</p>
