@@ -9,6 +9,7 @@ import FeaturesSection from "@/components/FeaturesSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
 import FAQSection from "@/components/FAQSection";
+import WhitepapersSection from "@/components/WhitepapersSection";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Building2, Menu } from "lucide-react";
