@@ -211,10 +211,71 @@ const server = http.createServer(async (req, res) => {
       console.error(`[${correlationId}] Outer exception booking`, outer);
       return json(res, 500, { error: "internal", correlationId });
     }
+  } else if (req.method === "POST" && req.url === "/api/whitepaper") {
+    const correlationId = crypto.randomUUID();
+    try {
+      let raw = "";
+      req.on("data", (chunk) => (raw += chunk));
+      req.on("end", async () => {
+        try {
+          const parsedBody = JSON.parse(raw || "{}");
+          const parsed = whitepaperSchema.parse(parsedBody);
+          if (parsed._honey) return json(res, 200, { status: "ok" });
+
+          const wp = WHITEPAPERS[parsed.whitepaper];
+          const origin = (req.headers["origin"] as string) || `http://${req.headers["host"]}`;
+          const downloadUrl = `${origin}${wp.url}`;
+
+          const to = process.env.CONTACT_TO!;
+          const from =
+            process.env.CONTACT_FROM?.includes("<") || process.env.CONTACT_FROM?.includes("@")
+              ? process.env.CONTACT_FROM!
+              : `Hieraflow <${process.env.CONTACT_FROM}>`;
+
+          const userHtml = `
+            <h2 style="font-family: system-ui, Arial;">Bonjour ${escapeHtml(parsed.firstName)},</h2>
+            <p>Merci pour votre intérêt pour Hieraflow. Voici votre livre blanc :</p>
+            <p><strong>${escapeHtml(wp.title)}</strong></p>
+            <p><a href="${downloadUrl}" style="display:inline-block;padding:12px 20px;background:#021b74;color:#fff;text-decoration:none;border-radius:6px;">Télécharger le PDF</a></p>
+            <p>Bonne lecture !<br/>L'équipe Hieraflow</p>
+          `;
+          const userSend = await resend.emails.send({
+            from, to: parsed.email, subject: `Votre livre blanc - ${wp.title}`, html: userHtml, replyTo: to,
+          });
+          if (userSend.error) {
+            console.error(`[${correlationId}] Erreur Resend whitepaper user:`, userSend.error);
+            return json(res, 502, { error: "email_failed", correlationId });
+          }
+
+          const adminHtml = `
+            <h2 style="font-family: system-ui, Arial;">Nouveau téléchargement de livre blanc</h2>
+            <p><strong>Livre blanc :</strong> ${escapeHtml(wp.title)}</p>
+            <p><strong>Nom :</strong> ${escapeHtml(parsed.firstName)} ${escapeHtml(parsed.lastName)}</p>
+            <p><strong>Email :</strong> ${escapeHtml(parsed.email)}</p>
+            <hr style="margin:16px 0; border:none; border-top:1px solid #eee;" />
+            <small style="color:#777;">ID: ${correlationId}</small>
+          `;
+          await resend.emails.send({
+            from, to, subject: `Téléchargement livre blanc - ${parsed.firstName} ${parsed.lastName}`,
+            html: adminHtml, replyTo: parsed.email,
+          });
+
+          return json(res, 201, { status: "ok", url: wp.url, correlationId });
+        } catch (e: any) {
+          if (e?.issues) return json(res, 400, { error: "validation_error", correlationId, details: e.issues });
+          console.error(`[${correlationId}] Exception whitepaper`, e);
+          return json(res, 500, { error: "internal", correlationId });
+        }
+      });
+    } catch (outer) {
+      console.error(`[${correlationId}] Outer exception whitepaper`, outer);
+      return json(res, 500, { error: "internal", correlationId });
+    }
   } else {
     res.statusCode = 404;
     res.end("Not found");
   }
+
 });
 
 const PORT = process.env.PORT || 3001;
