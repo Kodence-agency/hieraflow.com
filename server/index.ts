@@ -39,6 +39,26 @@ const bookingSchema = z.object({
   time: z.string().min(1),
 });
 
+const whitepaperSchema = z.object({
+  firstName: z.string().min(1).max(100),
+  lastName: z.string().min(1).max(100),
+  email: z.string().email(),
+  whitepaper: z.enum(["genz", "teams"]),
+  _honey: z.string().optional(),
+});
+
+const WHITEPAPERS: Record<string, { title: string; url: string }> = {
+  genz: {
+    title: "Livre blanc - Manager la Gen Z avec Hieraflow",
+    url: "/__l5e/assets-v1/b6736b9b-de6d-43fc-8d3d-802783aa74d3/Livre_blanc_genz_hieraflow.pdf",
+  },
+  teams: {
+    title: "Livre blanc - Structurer ses équipes avec Hieraflow",
+    url: "/__l5e/assets-v1/bf4a7882-2308-42af-a08c-68915ad485f1/Livre_blanc_teams_hieraflow.pdf",
+  },
+};
+
+
 function json(res: http.ServerResponse, status: number, data: any) {
   const body = JSON.stringify(data);
   res.writeHead(status, {
