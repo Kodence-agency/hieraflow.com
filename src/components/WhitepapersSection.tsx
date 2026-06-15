@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FileText, Download } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import genzAsset from "@/assets/livre-blanc-genz.pdf.asset.json";
 import teamsAsset from "@/assets/livre-blanc-teams.pdf.asset.json";
 
@@ -45,26 +46,26 @@ const WhitepapersSection = () => {
     if (!selected) return;
     setSubmitting(true);
     try {
-      const res = await fetch("/api/whitepaper", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const absoluteUrl = new URL(selected.url, window.location.origin).toString();
+      const { data, error } = await supabase.functions.invoke("send-whitepaper", {
+        body: {
           firstName, lastName, email,
-          whitepaper: selected.id,
+          whitepaperTitle: selected.title,
+          whitepaperUrl: absoluteUrl,
           _honey: honey,
-        }),
+        },
       });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
+      if (error || (data && (data as any).error)) {
+        console.error("send-whitepaper error", error, data);
         toast.error("Une erreur est survenue. Merci de réessayer.");
         return;
       }
       toast.success("Merci ! Le livre blanc vous a été envoyé par email.");
-      // Téléchargement immédiat
       window.open(selected.url, "_blank", "noopener,noreferrer");
       setOpen(false);
       setFirstName(""); setLastName(""); setEmail("");
-    } catch {
+    } catch (err) {
+      console.error(err);
       toast.error("Erreur réseau. Merci de réessayer.");
     } finally {
       setSubmitting(false);
