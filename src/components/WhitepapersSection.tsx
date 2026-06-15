@@ -130,15 +130,38 @@ const WhitepapersSection = () => {
                 <CardTitle className="text-base leading-snug">{wp.title}</CardTitle>
                 <CardDescription className="text-sm">{wp.description}</CardDescription>
               </CardHeader>
-              <CardContent className="p-4 pt-0 mt-auto">
+              <CardContent className="p-4 pt-0 mt-auto flex gap-2">
                 <Button
                   variant="corporate"
                   size="sm"
                   onClick={(e) => { e.stopPropagation(); openDialog(wp); }}
-                  className="w-full"
+                  className="flex-1"
                 >
                   <Download className="w-4 h-4" />
                   Télécharger
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const shareUrl = `${window.location.origin}/?wp=${wp.id}#livres-blancs`;
+                    const shareText = `Livre blanc — ${wp.title}`;
+                    try {
+                      if (navigator.share) {
+                        await navigator.share({ title: shareText, text: shareText, url: shareUrl });
+                      } else {
+                        await navigator.clipboard.writeText(`${shareText}\n${shareUrl}`);
+                        toast.success("Lien copié dans le presse-papier");
+                      }
+                    } catch (err) {
+                      console.error(err);
+                    }
+                  }}
+                  aria-label={`Partager le livre blanc : ${wp.title}`}
+                >
+                  <Share2 className="w-4 h-4" />
+                  Partager
                 </Button>
               </CardContent>
             </Card>
