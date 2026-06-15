@@ -4,26 +4,30 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { FileText, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import genzAsset from "@/assets/livre-blanc-genz.pdf.asset.json";
 import teamsAsset from "@/assets/livre-blanc-teams.pdf.asset.json";
+import coverGenz from "@/assets/cover-genz.jpg";
+import coverTeams from "@/assets/cover-teams.jpg";
 
-type Wp = { id: "genz" | "teams"; title: string; description: string; url: string };
+type Wp = { id: "genz" | "teams"; title: string; description: string; url: string; cover: string };
 
 const whitepapers: Wp[] = [
   {
     id: "genz",
-    title: "Manager la Gen Z",
-    description: "Comprendre et engager les nouvelles générations dans votre organisation grâce à Hieraflow.",
+    title: "Comment réduire de 40% le turnover de vos talents Gen Z en changeant une seule chose dans votre organisation",
+    description: "Ce que votre organisation révèle à un talent de 25 ans et que vous ne voyez plus depuis longtemps.",
     url: genzAsset.url,
+    cover: coverGenz,
   },
   {
     id: "teams",
-    title: "Structurer ses équipes",
-    description: "Méthodologie et bonnes pratiques pour bâtir des équipes performantes avec Hieraflow.",
+    title: "Pourquoi Teams ne remplacera jamais votre organigramme",
+    description: "Ce que Teams fait très bien — et ce qu'il ne fera jamais à votre place.",
     url: teamsAsset.url,
+    cover: coverTeams,
   },
 ];
 
