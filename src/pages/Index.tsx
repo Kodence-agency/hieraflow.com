@@ -75,7 +75,13 @@ const Index = () => {
               </a>
             </nav>
 
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-3">
+              <a href="#livres-blancs">
+                <Button variant="outline" className="gap-2">
+                  <FileText className="w-4 h-4" />
+                  Ressources gratuites
+                </Button>
+              </a>
               <a href="/#contact">
                 <Button variant="corporate">Démonstration</Button>
               </a>
