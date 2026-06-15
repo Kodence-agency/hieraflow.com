@@ -102,7 +102,20 @@ const WhitepapersSection = () => {
 
         <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {whitepapers.map((wp) => (
-            <Card key={wp.id} className="overflow-hidden hover:shadow-elegant transition-shadow flex flex-col">
+            <Card
+              key={wp.id}
+              role="button"
+              tabIndex={0}
+              onClick={() => openDialog(wp)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openDialog(wp);
+                }
+              }}
+              aria-label={`Télécharger le livre blanc : ${wp.title}`}
+              className="overflow-hidden hover:shadow-elegant transition-shadow flex flex-col cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
               <div className="aspect-[3/4] overflow-hidden bg-muted">
                 <img
                   src={wp.cover}
@@ -118,7 +131,12 @@ const WhitepapersSection = () => {
                 <CardDescription className="text-sm">{wp.description}</CardDescription>
               </CardHeader>
               <CardContent className="p-4 pt-0 mt-auto">
-                <Button variant="corporate" size="sm" onClick={() => openDialog(wp)} className="w-full">
+                <Button
+                  variant="corporate"
+                  size="sm"
+                  onClick={(e) => { e.stopPropagation(); openDialog(wp); }}
+                  className="w-full"
+                >
                   <Download className="w-4 h-4" />
                   Télécharger
                 </Button>
