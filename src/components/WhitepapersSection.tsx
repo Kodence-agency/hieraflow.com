@@ -63,11 +63,7 @@ const WhitepapersSection = () => {
       });
       if (error || (data && (data as any).error)) {
         console.error("send-whitepaper error", error, data);
-        toast.warning(
-          downloadWindow
-            ? "Le PDF est ouvert, mais l'email n'a pas pu être envoyé."
-            : "L'email n'a pas pu être envoyé. Autorisez les fenêtres pop-up pour ouvrir le PDF."
-        );
+        toast.warning("Le PDF s'ouvre, mais l'email n'a pas pu être envoyé pour le moment.");
         setOpen(false);
         return;
       }
