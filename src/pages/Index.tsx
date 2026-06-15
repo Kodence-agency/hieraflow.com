@@ -10,6 +10,7 @@ import BenefitsSection from "@/components/BenefitsSection";
 import ContactSection from "@/components/ContactSection";
 import FAQSection from "@/components/FAQSection";
 import WhitepapersSection from "@/components/WhitepapersSection";
+import WhitepapersPopup from "@/components/WhitepapersPopup";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { Building2, Menu, FileText } from "lucide-react";
@@ -169,6 +170,7 @@ const Index = () => {
         </div>
       </main>
       <Footer />
+      <WhitepapersPopup />
     </div>
   );
 };
