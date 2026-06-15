@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FileText, Download } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import genzAsset from "@/assets/livre-blanc-genz.pdf.asset.json";
 import teamsAsset from "@/assets/livre-blanc-teams.pdf.asset.json";
 
