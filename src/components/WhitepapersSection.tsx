@@ -76,11 +76,14 @@ const WhitepapersSection = () => {
     <section id="livres-blancs" className="py-20 bg-muted/30" aria-labelledby="livres-blancs-title">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-12">
+          <span className="inline-block px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 rounded-full">
+            Ressources gratuites
+          </span>
           <h2 id="livres-blancs-title" className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Nos livres blancs
+            Boostez vos équipes avec nos guides experts
           </h2>
           <p className="text-muted-foreground text-lg">
-            Téléchargez nos ressources gratuites pour aller plus loin avec Hieraflow.
+            Téléchargez gratuitement nos livres blancs et passez à l'action dès aujourd'hui.
           </p>
         </div>
 

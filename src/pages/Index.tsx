@@ -12,7 +12,7 @@ import FAQSection from "@/components/FAQSection";
 import WhitepapersSection from "@/components/WhitepapersSection";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { Building2, Menu } from "lucide-react";
+import { Building2, Menu, FileText } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
@@ -75,7 +75,13 @@ const Index = () => {
               </a>
             </nav>
 
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-3">
+              <a href="#livres-blancs">
+                <Button variant="outline" className="gap-2">
+                  <FileText className="w-4 h-4" />
+                  Ressources gratuites
+                </Button>
+              </a>
               <a href="/#contact">
                 <Button variant="corporate">Démonstration</Button>
               </a>
@@ -126,6 +132,12 @@ const Index = () => {
                 className="block text-foreground hover:text-primary transition-colors"
               >
                 Contact
+              </a>
+              <a
+                href="#livres-blancs"
+                className="block text-foreground hover:text-primary transition-colors"
+              >
+                Ressources gratuites
               </a>
               <div className="pt-4 space-y-2">
                 <a href="/#contact">
