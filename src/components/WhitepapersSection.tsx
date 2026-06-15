@@ -57,7 +57,12 @@ const WhitepapersSection = () => {
       const absoluteUrl = new URL(selected.url, window.location.origin).toString();
       const { data, error } = await supabase.functions.invoke("send-whitepaper", {
         body: {
-          firstName, lastName, email,
+          firstName: lastName, // legacy field — store full contact name
+          lastName: company,
+          email,
+          phone,
+          company,
+          headcount,
           whitepaperTitle: selected.title,
           whitepaperUrl: absoluteUrl,
           _honey: honey,
@@ -71,7 +76,7 @@ const WhitepapersSection = () => {
       }
       toast.success("Merci ! Le livre blanc vous a été envoyé par email.");
       setOpen(false);
-      setFirstName(""); setLastName(""); setEmail("");
+      setLastName(""); setCompany(""); setHeadcount(""); setEmail(""); setPhone("");
     } catch (err) {
       console.error(err);
       toast.error("Erreur réseau. Merci de réessayer.");
