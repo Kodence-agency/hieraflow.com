@@ -33,7 +33,7 @@ Deno.serve(async (req) => {
     }
 
     const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    const FROM = Deno.env.get('CONTACT_FROM') || 'Hieraflow <onboarding@resend.dev>';
+    const FROM = 'Hieraflow <contact@heavenit.org>';
     const TO_NOTIFY = Deno.env.get('CONTACT_TO');
     if (!RESEND_API_KEY) {
       return new Response(JSON.stringify({ error: 'Email service not configured' }), {
