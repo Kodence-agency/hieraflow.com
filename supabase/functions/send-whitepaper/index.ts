@@ -87,8 +87,11 @@ Deno.serve(async (req) => {
           html: `<div style="font-family:Arial,sans-serif;color:#0f172a">
             <h2>Nouveau téléchargement de livre blanc</h2>
             <p><strong>Livre blanc :</strong> ${safeTitle}</p>
-            <p><strong>Nom :</strong> ${safeFirst} ${safeLast}</p>
+            <p><strong>Nom et prénom :</strong> ${escapeHtml(firstName)}</p>
+            <p><strong>Société :</strong> ${escapeHtml(company || '')}</p>
+            <p><strong>Effectif :</strong> ${escapeHtml(headcount || '')}</p>
             <p><strong>Email :</strong> ${safeEmail}</p>
+            <p><strong>Téléphone :</strong> ${escapeHtml(phone || '—')}</p>
           </div>`,
         }),
       });
