@@ -34,9 +34,11 @@ const whitepapers: Wp[] = [
 const WhitepapersSection = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Wp | null>(null);
-  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [company, setCompany] = useState("");
+  const [headcount, setHeadcount] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [honey, setHoney] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
