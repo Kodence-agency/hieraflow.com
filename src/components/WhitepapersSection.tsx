@@ -142,14 +142,25 @@ const WhitepapersSection = () => {
               value={honey} onChange={(e) => setHoney(e.target.value)}
               style={{ position: "absolute", left: "-9999px" }} aria-hidden="true"
             />
+            <div class
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="wp-firstName">Prénom *</Label>
-                <Input id="wp-firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required maxLength={100} />
+                <Label htmlFor="wp-lastName">Nom et prénom *</Label>
+                <Input id="wp-lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required maxLength={150} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="wp-lastName">Nom *</Label>
-                <Input id="wp-lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required maxLength={100} />
+                <Label htmlFor="wp-company">Nom de société *</Label>
+                <Input id="wp-company" value={company} onChange={(e) => setCompany(e.target.value)} required maxLength={150} />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="wp-headcount">Effectif *</Label>
+                <Input id="wp-headcount" value={headcount} onChange={(e) => setHeadcount(e.target.value)} required maxLength={50} placeholder="ex : 50-200" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="wp-phone">Téléphone</Label>
+                <Input id="wp-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} maxLength={30} />
               </div>
             </div>
             <div className="space-y-2">
