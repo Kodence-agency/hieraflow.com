@@ -26,7 +26,7 @@ Deno.serve(async (req) => {
         status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-    const { firstName, lastName, email, whitepaperTitle, whitepaperUrl, _honey } = parsed.data;
+    const { firstName, lastName, email, phone, company, headcount, whitepaperTitle, whitepaperUrl, _honey } = parsed.data;
 
     // Honeypot
     if (_honey && _honey.length > 0) {
