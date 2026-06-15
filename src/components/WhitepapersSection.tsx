@@ -145,7 +145,13 @@ const WhitepapersSection = () => {
                   size="sm"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    const shareUrl = `${window.location.origin}/?wp=${wp.id}#livres-blancs`;
+                    const slug = wp.title
+                      .toLowerCase()
+                      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-+|-+$/g, "")
+                      .slice(0, 80);
+                    const shareUrl = `${window.location.origin}/livre-blanc/${slug}?wp=${wp.id}&tag=livre-blanc&titre=${encodeURIComponent(wp.title)}#livres-blancs`;
                     const shareText = `Livre blanc — ${wp.title}`;
                     try {
                       if (navigator.share) {
