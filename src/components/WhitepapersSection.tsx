@@ -91,17 +91,24 @@ const WhitepapersSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {whitepapers.map((wp) => (
-            <Card key={wp.id} className="hover:shadow-elegant transition-shadow">
+            <Card key={wp.id} className="overflow-hidden hover:shadow-elegant transition-shadow flex flex-col">
+              <div className="aspect-[3/4] overflow-hidden bg-muted">
+                <img
+                  src={wp.cover}
+                  alt={`Couverture du livre blanc : ${wp.title}`}
+                  loading="lazy"
+                  width={1024}
+                  height={1536}
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
-                  <FileText className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <CardTitle>{wp.title}</CardTitle>
+                <CardTitle className="text-xl leading-tight">{wp.title}</CardTitle>
                 <CardDescription>{wp.description}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="mt-auto">
                 <Button variant="corporate" onClick={() => openDialog(wp)} className="w-full">
                   <Download className="w-4 h-4" />
                   Télécharger le livre blanc
