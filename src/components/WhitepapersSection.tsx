@@ -49,6 +49,8 @@ const WhitepapersSection = () => {
     e.preventDefault();
     if (!selected) return;
     setSubmitting(true);
+    const downloadUrl = selected.url;
+    const downloadWindow = window.open(downloadUrl, "_blank", "noopener,noreferrer");
     try {
       const absoluteUrl = new URL(selected.url, window.location.origin).toString();
       const { data, error } = await supabase.functions.invoke("send-whitepaper", {
@@ -61,11 +63,15 @@ const WhitepapersSection = () => {
       });
       if (error || (data && (data as any).error)) {
         console.error("send-whitepaper error", error, data);
-        toast.error("Une erreur est survenue. Merci de réessayer.");
+        toast.warning(
+          downloadWindow
+            ? "Le PDF est ouvert, mais l'email n'a pas pu être envoyé."
+            : "L'email n'a pas pu être envoyé. Autorisez les fenêtres pop-up pour ouvrir le PDF."
+        );
+        setOpen(false);
         return;
       }
       toast.success("Merci ! Le livre blanc vous a été envoyé par email.");
-      window.open(selected.url, "_blank", "noopener,noreferrer");
       setOpen(false);
       setFirstName(""); setLastName(""); setEmail("");
     } catch (err) {
