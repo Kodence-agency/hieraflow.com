@@ -133,6 +133,12 @@ const Index = () => {
               >
                 Contact
               </a>
+              <a
+                href="#livres-blancs"
+                className="block text-foreground hover:text-primary transition-colors"
+              >
+                Ressources gratuites
+              </a>
               <div className="pt-4 space-y-2">
                 <a href="/#contact">
                   <Button variant="corporate" className="w-full">
