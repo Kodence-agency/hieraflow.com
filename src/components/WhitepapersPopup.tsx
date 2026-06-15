@@ -8,8 +8,7 @@ const WhitepapersPopup = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (sessionStorage.getItem(STORAGE_KEY)) return;
-    const t = setTimeout(() => setVisible(true), 1500);
+    const t = setTimeout(() => setVisible(true), 300);
     return () => clearTimeout(t);
   }, []);
 
