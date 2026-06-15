@@ -2,9 +2,12 @@ import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { z } from 'npm:zod@3.23.8';
 
 const schema = z.object({
-  firstName: z.string().trim().min(1).max(100),
-  lastName: z.string().trim().min(1).max(100),
+  firstName: z.string().trim().min(1).max(150),
+  lastName: z.string().trim().min(1).max(150),
   email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(30).optional().or(z.literal('')),
+  company: z.string().trim().max(150).optional().or(z.literal('')),
+  headcount: z.string().trim().max(50).optional().or(z.literal('')),
   whitepaperTitle: z.string().min(1).max(200),
   whitepaperUrl: z.string().url().max(2000),
   _honey: z.string().optional(),
@@ -23,7 +26,7 @@ Deno.serve(async (req) => {
         status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-    const { firstName, lastName, email, whitepaperTitle, whitepaperUrl, _honey } = parsed.data;
+    const { firstName, lastName, email, phone, company, headcount, whitepaperTitle, whitepaperUrl, _honey } = parsed.data;
 
     // Honeypot
     if (_honey && _honey.length > 0) {
@@ -84,8 +87,11 @@ Deno.serve(async (req) => {
           html: `<div style="font-family:Arial,sans-serif;color:#0f172a">
             <h2>Nouveau téléchargement de livre blanc</h2>
             <p><strong>Livre blanc :</strong> ${safeTitle}</p>
-            <p><strong>Nom :</strong> ${safeFirst} ${safeLast}</p>
+            <p><strong>Nom et prénom :</strong> ${escapeHtml(firstName)}</p>
+            <p><strong>Société :</strong> ${escapeHtml(company || '')}</p>
+            <p><strong>Effectif :</strong> ${escapeHtml(headcount || '')}</p>
             <p><strong>Email :</strong> ${safeEmail}</p>
+            <p><strong>Téléphone :</strong> ${escapeHtml(phone || '—')}</p>
           </div>`,
         }),
       });

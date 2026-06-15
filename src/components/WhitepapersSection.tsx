@@ -34,9 +34,11 @@ const whitepapers: Wp[] = [
 const WhitepapersSection = () => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<Wp | null>(null);
-  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [company, setCompany] = useState("");
+  const [headcount, setHeadcount] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [honey, setHoney] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -55,7 +57,12 @@ const WhitepapersSection = () => {
       const absoluteUrl = new URL(selected.url, window.location.origin).toString();
       const { data, error } = await supabase.functions.invoke("send-whitepaper", {
         body: {
-          firstName, lastName, email,
+          firstName: lastName, // legacy field — store full contact name
+          lastName: company,
+          email,
+          phone,
+          company,
+          headcount,
           whitepaperTitle: selected.title,
           whitepaperUrl: absoluteUrl,
           _honey: honey,
@@ -69,7 +76,7 @@ const WhitepapersSection = () => {
       }
       toast.success("Merci ! Le livre blanc vous a été envoyé par email.");
       setOpen(false);
-      setFirstName(""); setLastName(""); setEmail("");
+      setLastName(""); setCompany(""); setHeadcount(""); setEmail(""); setPhone("");
     } catch (err) {
       console.error(err);
       toast.error("Erreur réseau. Merci de réessayer.");
@@ -137,12 +144,22 @@ const WhitepapersSection = () => {
             />
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="wp-firstName">Prénom *</Label>
-                <Input id="wp-firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required maxLength={100} />
+                <Label htmlFor="wp-lastName">Nom et prénom *</Label>
+                <Input id="wp-lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required maxLength={150} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="wp-lastName">Nom *</Label>
-                <Input id="wp-lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required maxLength={100} />
+                <Label htmlFor="wp-company">Nom de société *</Label>
+                <Input id="wp-company" value={company} onChange={(e) => setCompany(e.target.value)} required maxLength={150} />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="wp-headcount">Effectif *</Label>
+                <Input id="wp-headcount" value={headcount} onChange={(e) => setHeadcount(e.target.value)} required maxLength={50} placeholder="ex : 50-200" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="wp-phone">Téléphone</Label>
+                <Input id="wp-phone" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} maxLength={30} />
               </div>
             </div>
             <div className="space-y-2">
