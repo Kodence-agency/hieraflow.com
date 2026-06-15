@@ -14,11 +14,6 @@ const WhitepapersPopup = () => {
 
   const dismiss = () => {
     setVisible(false);
-    try {
-      sessionStorage.setItem(STORAGE_KEY, "1");
-    } catch {
-      /* ignore */
-    }
   };
 
   const handleClick = () => {
