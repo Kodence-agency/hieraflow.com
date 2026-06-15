@@ -142,7 +142,6 @@ const WhitepapersSection = () => {
               value={honey} onChange={(e) => setHoney(e.target.value)}
               style={{ position: "absolute", left: "-9999px" }} aria-hidden="true"
             />
-            <div class
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="wp-lastName">Nom et prénom *</Label>
