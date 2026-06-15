@@ -2,9 +2,12 @@ import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors';
 import { z } from 'npm:zod@3.23.8';
 
 const schema = z.object({
-  firstName: z.string().trim().min(1).max(100),
-  lastName: z.string().trim().min(1).max(100),
+  firstName: z.string().trim().min(1).max(150),
+  lastName: z.string().trim().min(1).max(150),
   email: z.string().trim().email().max(255),
+  phone: z.string().trim().max(30).optional().or(z.literal('')),
+  company: z.string().trim().max(150).optional().or(z.literal('')),
+  headcount: z.string().trim().max(50).optional().or(z.literal('')),
   whitepaperTitle: z.string().min(1).max(200),
   whitepaperUrl: z.string().url().max(2000),
   _honey: z.string().optional(),
