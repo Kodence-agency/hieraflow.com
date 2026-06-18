@@ -23,6 +23,8 @@ npm run lint
 
 The frontend proxies `/api/*` requests to the backend at `http://localhost:3001`.
 
+> **Env backend :** le serveur (`server/index.ts`) charge via `dotenv/config` qui ne lit **que `.env`** (pas `.env.local`). Les variables `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` doivent être dans `.env`. Pour tester le formulaire, toujours utiliser `npm run dev:full`, jamais `npm run dev` seul.
+
 ## Architecture
 
 **Stack:** React 18 + TypeScript + Vite (frontend), Node.js HTTP server (backend), Tailwind CSS + shadcn/ui, TanStack Query, React Hook Form + Zod.
